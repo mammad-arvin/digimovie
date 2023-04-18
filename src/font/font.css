@@ -1,0 +1,35 @@
+@font-face {
+    font-family: iranYekan;
+    font-weight: 700;
+    src: url(./iranyekanwebboldfanum.ttf);
+}
+@font-face {
+    font-family: iranYekan;
+    font-weight: 500;
+    src: url(./iranyekanwebmediumfanum.ttf);
+}
+@font-face {
+    font-family: iranYekan;
+    font-weight: 400;
+    src: url(./IRANYekanWebRegular.ttf);
+}
+@font-face {
+    font-family: iranYekan;
+    font-weight: 300;
+    src: url(./iranyekanweblightfanum.ttf);
+}   
+@font-face {
+    font-family: lato;
+    font-weight: 300;
+    src: url(./Lato-Light.woff2);
+}   
+@font-face {
+    font-family: lato;
+    font-weight: 400;
+    src: url(./Lato-Regular.woff2);
+}   
+@font-face {
+    font-family: lato;
+    font-weight: 700;
+    src: url(./Lato-Black.woff2);
+}   
