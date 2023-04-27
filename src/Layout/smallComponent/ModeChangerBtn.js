@@ -23,7 +23,7 @@ const CircleIconOfFavIconStyle = styled.div`
     z-index: 10;
 `;
 
-const ModeChangerBtn = () => {
+const ModeChangerBtn = ({ mode: { darked, setDarked } }) => {
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
 
@@ -42,7 +42,10 @@ const ModeChangerBtn = () => {
                 position: "relative",
                 cursor: "pointer",
             }}
-            onClick={colorMode.toggleColorMode}
+            onClick={() => {
+                colorMode.toggleColorMode();
+                setDarked(!darked);
+            }}
         >
             <WbSunnyIcon style={{ color: "#F9D949" }} />
             <CircleIconOfFavIconStyle
