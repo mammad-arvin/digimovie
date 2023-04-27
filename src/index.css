@@ -1,11 +1,20 @@
 @import url(./font/font.css);
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+::-webkit-scrollbar {
+    width: 2.5px;
+}
+::-webkit-scrollbar-thumb{
+  background: rgb(234, 147, 16);
+}
+
 body {
-  font-family: iranYekan,lato, 'Roboto',sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: iranYekan, lato, "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
