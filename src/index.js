@@ -1,15 +1,18 @@
-import React from "react";
+import * as React from "react";
 import ReactDOM from "react-dom/client";
+
+// style
 import "./index.css";
+
+// Component
 import App from "./App";
+
+// theme changer warped all component
+import ThemeChanger from "./mui/ThemeChanger";
+
+// Graph Apollo Provder
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
-
-//  mui default theme
-import { ThemeProvider } from "@mui/material";
-import theme from "./mui/theme";
-
-// apollo
-const client =new ApolloClient({
+const client = new ApolloClient({
     uri: process.env.REACT_APP_GRAPH_URL,
     cache: new InMemoryCache(),
 });
@@ -17,8 +20,8 @@ const client =new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <ApolloProvider client={client}>
-        <ThemeProvider theme={theme}>
+        <ThemeChanger>
             <App />
-        </ThemeProvider>
+        </ThemeChanger>
     </ApolloProvider>
 );
