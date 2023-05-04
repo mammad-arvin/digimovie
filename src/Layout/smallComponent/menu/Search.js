@@ -23,6 +23,7 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 // helper functions
 import { joinGenre } from "../../../helpers/helperFunctions";
+import { useTheme } from "@emotion/react";
 
 function sleep(delay = 0) {
     return new Promise((resolve) => {
@@ -34,6 +35,7 @@ const Search = () => {
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loadingState = open && options.length === 0;
+    const {palette:{mode}}=useTheme()
 
     const [value, setValue] = useState("");
     console.log(value);
@@ -72,7 +74,7 @@ const Search = () => {
         <>
             <Autocomplete
                 id="asynchronous-demo"
-                sx={{ width: { xs: "90%", sm: "99%", md: "330px" } }}
+                sx={{ width: { xs: "95%", sm: "100%" , lg: "330px" } }}
                 open={open}
                 onOpen={() => {
                     setOpen(true);
@@ -101,12 +103,12 @@ const Search = () => {
                                 width: "100%",
                                 height: "42px",
                                 font: "13.6px iranYekan",
-                                color: "#FFF",
+                                color: `${mode === "dark"? "#FFF" : "black" }`,
                                 padding: "10px",
                                 borderRadius: "30px",
                                 border: "none",
                                 outline: "none",
-                                background: "black",
+                                background: `${mode !== "dark"? "#CCCCCC" : "black" }`,
                                 letterSpacing: "1px",
                             }}
                             placeholder="جستجو کنید..."
