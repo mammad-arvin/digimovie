@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 //  mui
 import {
@@ -35,7 +36,9 @@ const Search = () => {
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loadingState = open && options.length === 0;
-    const {palette:{mode}}=useTheme()
+    const {
+        palette: { mode },
+    } = useTheme();
 
     const [value, setValue] = useState("");
     console.log(value);
@@ -74,7 +77,7 @@ const Search = () => {
         <>
             <Autocomplete
                 id="asynchronous-demo"
-                sx={{ width: { xs: "95%", sm: "100%" , lg: "330px" } }}
+                sx={{ width: { xs: "95%", sm: "100%", lg: "330px" } }}
                 open={open}
                 onOpen={() => {
                     setOpen(true);
@@ -103,12 +106,14 @@ const Search = () => {
                                 width: "100%",
                                 height: "42px",
                                 font: "13.6px iranYekan",
-                                color: `${mode === "dark"? "#FFF" : "black" }`,
+                                color: `${mode === "dark" ? "#FFF" : "black"}`,
                                 padding: "10px",
                                 borderRadius: "30px",
                                 border: "none",
                                 outline: "none",
-                                background: `${mode !== "dark"? "#CCCCCC" : "black" }`,
+                                background: `${
+                                    mode !== "dark" ? "#CCCCCC" : "black"
+                                }`,
                                 letterSpacing: "1px",
                             }}
                             placeholder="جستجو کنید..."
@@ -160,6 +165,7 @@ const Search = () => {
                                                     images,
                                                     manyRerence,
                                                     rate: { rate },
+                                                    slug,
                                                 }) =>
                                                     title
                                                         .toLowerCase()
@@ -169,84 +175,90 @@ const Search = () => {
                                                         <React.Fragment
                                                             key={id}
                                                         >
-                                                            <ListItem
-                                                                sx={{
-                                                                    height: "93.18px",
-                                                                }}
-                                                            >
-                                                                <Box
+                                                            <Link to={`/movie/${slug}`}>
+                                                                <ListItem
                                                                     sx={{
-                                                                        width: "40px",
-                                                                        height: "39px",
-                                                                        display:
-                                                                            "flex",
-                                                                        flexDirection:
-                                                                            "column",
-                                                                        justifyContent:
-                                                                            "center",
-                                                                        alignItems:
-                                                                            "center",
-                                                                        mr: 2,
+                                                                        height: "93.18px",
                                                                     }}
                                                                 >
-                                                                    <StarBorderIcon
-                                                                        fontSize="medium"
-                                                                        color="warning"
-                                                                    />
-                                                                    <Typography
-                                                                        variant="p"
+                                                                    <Box
                                                                         sx={{
-                                                                            fontSize:
-                                                                                "16px",
-                                                                            mt: "7px",
+                                                                            width: "40px",
+                                                                            height: "39px",
+                                                                            display:
+                                                                                "flex",
+                                                                            flexDirection:
+                                                                                "column",
+                                                                            justifyContent:
+                                                                                "center",
+                                                                            alignItems:
+                                                                                "center",
+                                                                            mr: 2,
                                                                         }}
                                                                     >
-                                                                        {rate}
-                                                                    </Typography>
-                                                                </Box>
-                                                                <ListItemAvatar>
-                                                                    <Avatar
-                                                                        variant="rounded"
-                                                                        alt="Cover Picture"
-                                                                        src={
-                                                                            images[1]
-                                                                                .url
-                                                                        }
-                                                                        sx={{
-                                                                            width: "58.19px",
-                                                                            height: "58.19px",
-                                                                            mr: "12px",
-                                                                        }}
-                                                                    />
-                                                                </ListItemAvatar>
-                                                                <Box width="170px">
-                                                                    <Typography
-                                                                        variant="p"
-                                                                        sx={{
-                                                                            font: "16px lato",
-                                                                            width: "100%",
-                                                                            whiteSpace:
-                                                                                "nowrap",
-                                                                        }}
-                                                                    >
-                                                                        {title}
-                                                                    </Typography>
-                                                                    <Typography
-                                                                        variant="subtitle2"
-                                                                        sx={{
-                                                                            fontSize:
-                                                                                "12px",
-                                                                            whiteSpace:
-                                                                                "nowrap",
-                                                                            color: "#616161",
-                                                                        }}
-                                                                    >
-                                                                        {joinGenre(
-                                                                            manyRerence
-                                                                        )}
-                                                                    </Typography>
-                                                                </Box>
-                                                            </ListItem>
+                                                                        <StarBorderIcon
+                                                                            fontSize="medium"
+                                                                            color="warning"
+                                                                        />
+                                                                        <Typography
+                                                                            variant="p"
+                                                                            sx={{
+                                                                                fontSize:
+                                                                                    "16px",
+                                                                                mt: "7px",
+                                                                            }}
+                                                                        >
+                                                                            {
+                                                                                rate
+                                                                            }
+                                                                        </Typography>
+                                                                    </Box>
+                                                                    <ListItemAvatar>
+                                                                        <Avatar
+                                                                            variant="rounded"
+                                                                            alt="Cover Picture"
+                                                                            src={
+                                                                                images[1]
+                                                                                    .url
+                                                                            }
+                                                                            sx={{
+                                                                                width: "58.19px",
+                                                                                height: "58.19px",
+                                                                                mr: "12px",
+                                                                            }}
+                                                                        />
+                                                                    </ListItemAvatar>
+                                                                    <Box width="170px">
+                                                                        <Typography
+                                                                            variant="p"
+                                                                            sx={{
+                                                                                font: "16px lato",
+                                                                                width: "100%",
+                                                                                whiteSpace:
+                                                                                    "nowrap",
+                                                                            }}
+                                                                        >
+                                                                            {
+                                                                                title
+                                                                            }
+                                                                        </Typography>
+                                                                        <Typography
+                                                                            variant="subtitle2"
+                                                                            sx={{
+                                                                                fontSize:
+                                                                                    "12px",
+                                                                                whiteSpace:
+                                                                                    "nowrap",
+                                                                                color: "#616161",
+                                                                            }}
+                                                                        >
+                                                                            {joinGenre(
+                                                                                manyRerence
+                                                                            )}
+                                                                        </Typography>
+                                                                    </Box>
+                                                                </ListItem>
+                                                            </Link>
                                                             <Divider />
                                                         </React.Fragment>
                                                     )
