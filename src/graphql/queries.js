@@ -8,4 +8,26 @@ const GET_USERS = gql`
     }
 `;
 
-export { GET_USERS };
+const GET_FILMS_DETAILS_FOR_SEARCH = gql`
+    query MyQuery {
+        movies {
+            id
+            title
+            slug
+            images {
+                fileName
+                url
+            }
+            manyRerence {
+                ... on Genres {
+                    genre
+                }
+            }
+            rate {
+                rate
+            }
+        }
+    }
+`;
+
+export { GET_USERS, GET_FILMS_DETAILS_FOR_SEARCH };
