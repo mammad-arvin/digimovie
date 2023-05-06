@@ -38,13 +38,13 @@ const ModeChangerBtn = () => {
                 marginLeft: "25px",
                 padding: "5px",
                 borderRadius: "50px",
-                backgroundColor: "#252525",
+                backgroundColor:`${theme.palette.mode === "dark" ? "#252525" : "#CCCCCC"}`,
                 position: "relative",
                 cursor: "pointer",
             }}
             onClick={() => {colorMode.toggleColorMode();}}
         >
-            <WbSunnyIcon style={{ color: "#F9D949" }} />
+            <WbSunnyIcon style={{ color: "#e29906" }} />
             <CircleIconOfFavIconStyle
                 mode={theme.palette.mode}
                 style={{
