@@ -52,8 +52,8 @@ export default function ProfileMenuItem() {
                 }}
                 sx={{
                     position: "absolute",
-                    top: "35px",
-                    left: "60px",
+                    top: "30px",
+                    left: { xs:"0px" , md:"-60px"},
                 }}
             >
                 <MenuItem sx={itemStyles} disableRipple onClick={handleClose}>
