@@ -2,6 +2,7 @@ import React from "react";
 
 // mui component
 import { Box, Badge } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 // icons
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -18,7 +19,7 @@ const FavMovie = styled.div`
     align-items: center;
     border-radius: 50%;
     margin-left: 16px;
-    background: #131313;
+    background: ${(props) => (props.mode === "dark" ? "#131313" : "#CCCCCC")};
     .innerCicle {
         height: 38px;
         width: 38px;
@@ -26,7 +27,8 @@ const FavMovie = styled.div`
         justify-content: center;
         align-items: center;
         border-radius: 50%;
-        background-color: #252525;
+        background-color: ${(props) =>
+            props.mode === "dark" ? "#252525" : "#FFF"};
         .favIcon {
             height: 20px;
             width: 20px;
@@ -40,9 +42,12 @@ const FavMovie = styled.div`
 `;
 
 const FavMovieBtn = () => {
+    const {
+        palette: { mode },
+    } = useTheme();
     return (
         <Link to="/favorite">
-            <FavMovie>
+            <FavMovie mode={mode}>
                 <Box className="innerCicle">
                     <Box className="favIcon">
                         <Badge
