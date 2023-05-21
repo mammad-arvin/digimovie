@@ -1,21 +1,26 @@
 import React from "react";
 
 // mui componenes
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
 // Images
 import Image from "mui-image";
 import LeftBottom from "../assets/image/layout-images/left-botto-cicle.png";
 
+// component
+import NewsGallery from "./smallComponent/forFooter/NewsGallery";
+
 const Footer = () => {
     const {
         palette: { mode },
     } = useTheme();
-    const innerwidth = window.innerWidth;
+
+    const innerWidth = window.innerWidth;
+
     return (
         <>
-            <Box mx={-3}>
+            <Box mx={-3} >
                 {/* curve 1 */}
                 <Box
                     sx={{
@@ -58,16 +63,18 @@ const Footer = () => {
                 </Box>
 
                 <Box
-                    mx={-3}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
                     sx={{
-                        height: "296px",
-                        position: "relative",
+                        minHeight: "296px",
+                        maxHeight: "auto",
                         background: mode === "dark" ? "#1E1E1E" : "#F3F3F3",
                         position: "relative",
                     }}
                 >
                     {/* left wave */}
-                    {mode === "dark" && innerwidth > 1024 && (
+                    {mode === "dark" && innerWidth > 1024 && (
                         <Box
                             id="left-bottom-wave"
                             sx={{
@@ -85,6 +92,40 @@ const Footer = () => {
                             />
                         </Box>
                     )}
+                    {/* content */}
+                    <Grid
+                        container
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        gap="20px"
+                        bgcolor="green"
+                        sx={{direction: "ltr" }}
+                    >
+                        <Grid item sx={11} md={3.5} bgcolor=" yellow">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, magnam.
+                        </Grid>
+                        <Grid item sx={11} md={3.5} bgcolor="skyblue">
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Modi architecto neque tempora iure sint hic
+                            numquam doloribus. Quas blanditiis ea animi sequi
+                            velit quod neque ut tempore expedita, quam veniam
+                            eaque aliquam quae deleniti vel, reprehenderit sint
+                            recusandae explicabo tempora necessitatibus et iure
+                            rem? Provident explicabo nesciunt harum ex quae?
+                        </Grid>
+                        <Grid
+                            item
+                            sx={11}
+                            md={4}
+                            lg={3}
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <NewsGallery />
+                        </Grid>
+                    </Grid>
                 </Box>
             </Box>
         </>
