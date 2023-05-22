@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 // mui componenes
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, List, ListItem, Stack, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
 // Images
@@ -20,7 +21,7 @@ const Footer = () => {
 
     return (
         <>
-            <Box mx={-3} >
+            <Box mx={-3}>
                 {/* curve 1 */}
                 <Box
                     sx={{
@@ -64,6 +65,7 @@ const Footer = () => {
 
                 <Box
                     display="flex"
+                    flexDirection="column"
                     justifyContent="center"
                     alignItems="center"
                     sx={{
@@ -97,23 +99,92 @@ const Footer = () => {
                         container
                         display="flex"
                         justifyContent="center"
-                        alignItems="center"
+                        // alignItems="center"
                         gap="20px"
                         bgcolor="green"
-                        sx={{direction: "ltr" }}
+                        sx={{
+                            direction: "ltr",
+                            marginTop: { xs: "45px", md: "5px" },
+                        }}
                     >
-                        <Grid item sx={11} md={3.5} bgcolor=" yellow">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, magnam.
+                        <Grid item xs={11} md={3.5} bgcolor=" yellow">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Corporis, magnam.
                         </Grid>
-                        <Grid item sx={11} md={3.5} bgcolor="skyblue">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Modi architecto neque tempora iure sint hic
-                            numquam doloribus. Quas blanditiis ea animi sequi
-                            velit quod neque ut tempore expedita, quam veniam
-                            eaque aliquam quae deleniti vel, reprehenderit sint
-                            recusandae explicabo tempora necessitatibus et iure
-                            rem? Provident explicabo nesciunt harum ex quae?
+
+                        {/* footer Links */}
+                        <Grid
+                            item
+                            xs={11}
+                            md={3.9}
+                            lg={3.5}
+                            sx={{
+                                direction: "rtl",
+                                fontSize: "12.8px",
+                                color: mode === "dark" ? "#fff" : "#000",
+                            }}
+                        >
+                            <Grid container justifyContent="space-around">
+                                <Grid item>
+                                    <List disablePadding>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/movies">
+                                                دانلود فیلم
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/movies/online-play">
+                                                پخش آنلاین فیلم ها
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/movies/best-250">
+                                                ۲۵۰ فیلم برتر تاریخ
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/movies/box-office">
+                                                باکس آفیس
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/Terms-Conditions">
+                                                قوانین و مقررات
+                                            </Link>
+                                        </ListItem>
+                                    </List>
+                                </Grid>
+                                <Grid item>
+                                    <List disablePadding>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/series">
+                                                دانلود سریال‌
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/series/online-play">
+                                                پخش آنلاین سریال ها
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/series/best-250">
+                                                ۲۵۰ سریال برتر تاریخ
+                                            </Link>
+                                        </ListItem>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/faq">سوالات متداول</Link>
+                                        </ListItem>
+                                        <ListItem className="footerLinks">
+                                            <Link to="/DMCA-POLICY">
+                                                DMCA POLICY
+                                            </Link>
+                                        </ListItem>
+                                    </List>
+                                </Grid>
+                            </Grid>
                         </Grid>
+
+                        {/* news Gallery */}
                         <Grid
                             item
                             sx={11}
@@ -126,6 +197,18 @@ const Footer = () => {
                             <NewsGallery />
                         </Grid>
                     </Grid>
+                    
+                    {/* descroption */}
+                    <Typography
+                        variant="subtitle2"
+                        sx={{
+                            mt: "30px" ,
+                            color: mode === "dark" ? "#fff" : "#000",
+                        }}
+                    >
+                        باز طراحی شده ی وب سایت digimovie.vip با Reactjs و
+                        GraphQL
+                    </Typography>
                 </Box>
             </Box>
         </>
