@@ -4,16 +4,47 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-::-webkit-scrollbar {
-    width: 2.5px;
+a {
+    text-decoration: none;
+    color: inherit;
 }
-::-webkit-scrollbar-thumb{
-  background: rgb(234, 147, 16);
+
+/*  for nasted list item link */
+.liItems {
+    display: flex;
+    align-items: center;
+    font-size: 14.4px;
+    transition: color 0.3s;
+}
+.liItems::before {
+    content: "\2022";
+    color: #eb8307;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: 0.3em;
+}
+
+/* side menu and footer and nadtedlist Links styles */
+:is(.sideMenuLinks, .footerLinks, .liItems):hover {
+    color: #eb8307;
+}
+.footerLinks {
+    transition: color 0.3s;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+    width: 4.5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(234, 147, 16);
 }
 
 body {
     font-family: iranYekan, lato, "Roboto", sans-serif;
+    font-size: 13.6px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
