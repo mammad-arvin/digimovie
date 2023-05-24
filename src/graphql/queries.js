@@ -30,4 +30,18 @@ const GET_FILMS_DETAILS_FOR_SEARCH = gql`
     }
 `;
 
-export { GET_USERS, GET_FILMS_DETAILS_FOR_SEARCH };
+// footer news gallery
+const GET_FOOTER_NEWS_GALLERY = gql`
+    query MyQuery {
+        newss {
+            id
+            slug
+            title
+            image {
+                url
+            }
+        }
+    }
+`;
+
+export { GET_USERS, GET_FILMS_DETAILS_FOR_SEARCH , GET_FOOTER_NEWS_GALLERY };
