@@ -11,6 +11,7 @@ import LeftBottom from "../assets/image/layout-images/left-botto-cicle.png";
 
 // component
 import NewsGallery from "./smallComponent/forFooter/NewsGallery";
+import SocialMediaLink from "./smallComponent/forFooter/SocialMediaLink";
 
 const Footer = () => {
     const {
@@ -94,22 +95,40 @@ const Footer = () => {
                             />
                         </Box>
                     )}
+
                     {/* content */}
                     <Grid
                         container
                         display="flex"
                         justifyContent="center"
-                        // alignItems="center"
-                        gap="20px"
-                        bgcolor="green"
                         sx={{
                             direction: "ltr",
                             marginTop: { xs: "45px", md: "5px" },
+                            gap: { xs: "35px", md: "20px" },
                         }}
                     >
-                        <Grid item xs={11} md={3.5} bgcolor=" yellow">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit. Corporis, magnam.
+                        {/* social links */}
+                        <Grid
+                            item
+                            xs={12}
+                            md={3.5}
+                            display="flex"
+                            flexDirection="column"
+                            alignItems="center"
+                            gap="15px"
+                        >
+                            <SocialMediaLink
+                                FT="عضویت در کانال تلگرام"
+                                ET="TELEGRAM CHANNEL"
+                                Icon="teleg"
+                                link="https://www.t.me/mamad_arvin"
+                            />
+                            <SocialMediaLink
+                                FT="مشاهده در اینستاگرام"
+                                ET="INSTAGRAM PAGE"
+                                Icon="Instagram"
+                                link="https://www.instagram.com/mamad_arvin/"
+                            />
                         </Grid>
 
                         {/* footer Links */}
@@ -197,18 +216,21 @@ const Footer = () => {
                             <NewsGallery />
                         </Grid>
                     </Grid>
-                    
+
                     {/* descroption */}
                     <Typography
                         variant="subtitle2"
                         sx={{
-                            mt: "30px" ,
+                            mt: "30px",
+                            mb: "15px",
                             color: mode === "dark" ? "#fff" : "#000",
                         }}
                     >
-                        باز طراحی شده ی وب سایت digimovie.vip با Reactjs و
-                        GraphQL
-                    </Typography>
+                        باز طراحی شده ی وب سایت
+                        <Link to="https://digimovie.vip/" target="_blank" style={{color:"#00a8ff"}}>
+                            {" "} digimovie.vip {" "}
+                        </Link> 
+                        با <span style={{color:"orangered"}}> Reactjs </span>  و  <span style={{color:"green"}}>GraphQL</span>                    </Typography>
                 </Box>
             </Box>
         </>
