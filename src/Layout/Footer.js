@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // mui componenes
-import { Box, Grid, List, ListItem, Stack, Typography } from "@mui/material";
+import { Box, Grid, List, ListItem, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
 // Images
@@ -146,58 +146,60 @@ const Footer = () => {
                             <Grid container justifyContent="space-around">
                                 <Grid item>
                                     <List disablePadding>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/movies">
-                                                دانلود فیلم
-                                            </Link>
-                                        </ListItem>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/movies/online-play">
-                                                پخش آنلاین فیلم ها
-                                            </Link>
-                                        </ListItem>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/movies/best-250">
-                                                ۲۵۰ فیلم برتر تاریخ
-                                            </Link>
-                                        </ListItem>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/movies/box-office">
-                                                باکس آفیس
-                                            </Link>
-                                        </ListItem>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/Terms-Conditions">
-                                                قوانین و مقررات
-                                            </Link>
-                                        </ListItem>
+                                    {[
+                                            { t: "دانلود فیلم", l: "/movies" },
+                                            {
+                                                t: "پخش آنلاین فیلم ها",
+                                                l: "/movies/online-play",
+                                            },
+                                            {
+                                                t: "۲۵۰ فیلم برتر تاریخ",
+                                                l: "/movies/best-250",
+                                            },
+                                            {
+                                                t: "باکس آفیس",
+                                                l: "/movies/box-office",
+                                            },
+                                            {
+                                                t: "قوانین و مقررات",
+                                                l: "/Terms-Conditions",
+                                            },
+                                        ].map((text) => (
+                                            <ListItem className="footerLinks">
+                                                <Link to={text.l}>
+                                                    {text.t}
+                                                </Link>
+                                            </ListItem>
+                                        ))}
                                     </List>
                                 </Grid>
                                 <Grid item>
                                     <List disablePadding>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/series">
-                                                دانلود سریال‌
-                                            </Link>
-                                        </ListItem>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/series/online-play">
-                                                پخش آنلاین سریال ها
-                                            </Link>
-                                        </ListItem>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/series/best-250">
-                                                ۲۵۰ سریال برتر تاریخ
-                                            </Link>
-                                        </ListItem>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/faq">سوالات متداول</Link>
-                                        </ListItem>
-                                        <ListItem className="footerLinks">
-                                            <Link to="/DMCA-POLICY">
-                                                DMCA POLICY
-                                            </Link>
-                                        </ListItem>
+                                        {[
+                                            { t: "دانلود سریال‌", l: "/series" },
+                                            {
+                                                t: "پخش آنلاین سریال ها",
+                                                l: "/series/online-play",
+                                            },
+                                            {
+                                                t: "۲۵۰ سریال برتر تاریخ",
+                                                l: "/series/best-250",
+                                            },
+                                            {
+                                                t: "سوالات متداول",
+                                                l: "/faq",
+                                            },
+                                            {
+                                                t: "DMCA POLICY",
+                                                l: "/DMCA-POLICY",
+                                            },
+                                        ].map((text) => (
+                                            <ListItem className="footerLinks">
+                                                <Link to={text.l}>
+                                                    {text.t}
+                                                </Link>
+                                            </ListItem>
+                                        ))}
                                     </List>
                                 </Grid>
                             </Grid>
