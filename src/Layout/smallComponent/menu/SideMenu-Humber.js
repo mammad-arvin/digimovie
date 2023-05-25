@@ -79,8 +79,8 @@ export default function SideMenu() {
                     { t: "دانلود سریال", l: "/series" },
                     { t: "هنرمندان", l: "/artists" },
                     { t: "تماس با ما", l: "/contact" },
-                ].map((text) => (
-                    <>
+                ].map((text ,index) => (
+                    <React.Fragment key={index}>
                         {text.t === "دانلود فیلم" ? (
                             <ListItem
                                 nested
@@ -205,7 +205,7 @@ export default function SideMenu() {
                             </Link>
                         )}
                         <Divider />
-                    </>
+                    </React.Fragment>
                 ))}
             </List>
         </Box>
