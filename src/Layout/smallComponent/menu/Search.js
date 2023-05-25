@@ -41,7 +41,6 @@ const Search = () => {
     } = useTheme();
 
     const [value, setValue] = useState("");
-    console.log(value);
 
     const changeHndler = ({ target: { value } }) => {
         setValue(value);
