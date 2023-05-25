@@ -164,8 +164,8 @@ const Footer = () => {
                                                 t: "قوانین و مقررات",
                                                 l: "/Terms-Conditions",
                                             },
-                                        ].map((text) => (
-                                            <ListItem className="footerLinks">
+                                        ].map((text ,index) => (
+                                            <ListItem className="footerLinks" key={index}>
                                                 <Link to={text.l}>
                                                     {text.t}
                                                 </Link>
@@ -193,8 +193,8 @@ const Footer = () => {
                                                 t: "DMCA POLICY",
                                                 l: "/DMCA-POLICY",
                                             },
-                                        ].map((text) => (
-                                            <ListItem className="footerLinks">
+                                        ].map((text, index) => (
+                                            <ListItem className="footerLinks" key={index}>
                                                 <Link to={text.l}>
                                                     {text.t}
                                                 </Link>
