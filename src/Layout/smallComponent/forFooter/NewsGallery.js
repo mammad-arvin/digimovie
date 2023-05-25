@@ -36,7 +36,7 @@ const NewsGallery = () => {
                     data.newss.map(
                         (item, index) =>
                             index < 5 && (
-                                <Link to={"news/"+item.slug}>
+                                <Link to={"news/"+item.slug} key={index}>
                                     <Image
                                         src={item.image.url}
                                         key={item.id}
