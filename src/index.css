@@ -42,6 +42,21 @@ a {
     background: rgb(234, 147, 16);
 }
 
+/* details link style */
+.details a {
+    color: #ff6608;
+}
+.details h2 a {
+    color: inherit;
+}
+.details h2 {
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+.details p {
+    font-weight: 300;
+}
+
 body {
     font-family: iranYekan, lato, "Roboto", sans-serif;
     font-size: 13.6px;
