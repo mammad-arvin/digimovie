@@ -15,7 +15,7 @@ const Path = ({ category, title, slug }) => {
     } = useTheme();
 
     return (
-        <Grid container xs={12} lg={10.5}>
+        <Grid container xs={12} lg={10.8}>
             <Grid
                 height="60px"
                 display="flex"
