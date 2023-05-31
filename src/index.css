@@ -57,6 +57,11 @@ a {
     font-weight: 300;
 }
 
+/* time ago styles */
+.timeAgo{
+    direction: rtl;
+}
+
 body {
     font-family: iranYekan, lato, "Roboto", sans-serif;
     font-size: 13.6px;
