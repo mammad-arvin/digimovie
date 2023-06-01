@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
                 }}
             >
                 <Header />
-                <Stack sx={{ minHeight: "700px" }}>{children}</Stack>
+                <Stack sx={{ minHeight: "700px" ,alignItems:"center" }}>{children}</Stack>
                 <Footer />
             </Container>
         </Box>
