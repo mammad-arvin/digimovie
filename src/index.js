@@ -10,6 +10,9 @@ import App from "./App";
 // theme changer warped all component
 import ThemeChanger from "./mui/ThemeChanger";
 
+// router dom
+import { BrowserRouter } from "react-router-dom";
+
 // Graph Apollo Provder
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 const client = new ApolloClient({
@@ -20,8 +23,10 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <ApolloProvider client={client}>
-        <ThemeChanger>
-            <App />
-        </ThemeChanger>
+        <BrowserRouter>
+            <ThemeChanger>
+                <App />
+            </ThemeChanger>
+        </BrowserRouter>
     </ApolloProvider>
 );
