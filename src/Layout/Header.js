@@ -8,8 +8,6 @@ import { useTheme } from "@emotion/react";
 import Image from "mui-image";
 
 //images
-import LeftWave from "../assets/image/layout-images/back_one_head.png";
-import RightWave from "../assets/image/layout-images/back_two_head.png";
 import DarkLogo from "../assets/image/layout-images/dark_logo.webp";
 import LightLogo from "../assets/image/layout-images/light-logo.webp";
 
@@ -39,48 +37,8 @@ const Header = () => {
                     background: "none",
                     minHeight: "200px",
                     boxShadow: "none",
-                    position: "relative",
                 }}
             >
-                {/* right and left wave images */}
-                {mode === "dark" && (
-                    <>
-                        <Box
-                            id="left-wave"
-                            sx={{
-                                position: "absolute",
-                                top: "-90px",
-                                left:  "-75px",
-                                zIndex: "0",
-                            }}
-                        >
-                            <Image
-                                src={LeftWave}
-                                height="100%"
-                                width="100%"
-                                duration={500}
-                                fit="cover"
-                            />
-                        </Box>
-
-                        <Box
-                            id="right-wave"
-                            sx={{
-                                position: "absolute",
-                                top: "-200px",
-                                right: "-700px",
-                                zIndex: "0",
-                            }}
-                        >
-                            <Image
-                                src={RightWave}
-                                height="120%"
-                                duration={500}
-                                fit="cover"
-                            />
-                        </Box>
-                    </>
-                )}
                 
                 {/* Toolbar */}
 
