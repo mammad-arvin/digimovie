@@ -44,4 +44,33 @@ const GET_FOOTER_NEWS_GALLERY = gql`
     }
 `;
 
-export { GET_USERS, GET_FILMS_DETAILS_FOR_SEARCH , GET_FOOTER_NEWS_GALLERY };
+// evry news query
+const GET_REPORT_OF_NEWS = gql`
+    query getReport($slug: String!) {
+        news(where: { slug: $slug }) {
+            image {
+                url
+            }
+            description {
+                html
+            }
+            liks
+            pageview
+            slug
+            title
+            videoLink
+            uploadDate
+            comments {
+                id
+                description
+            }
+        }
+    }
+`;
+
+export {
+    GET_USERS,
+    GET_FILMS_DETAILS_FOR_SEARCH,
+    GET_FOOTER_NEWS_GALLERY,
+    GET_REPORT_OF_NEWS,
+};
