@@ -1,16 +1,14 @@
 import * as React from "react";
 
-
-
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { faIR } from "@mui/material/locale";
 
-export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+export const ColorModeContext = React.createContext({
+    toggleColorMode: () => {},
+});
 
-
-
-export default function ThemeChanger({children}) {
+export default function ThemeChanger({ children }) {
     const [mode, setMode] = React.useState("dark");
 
     const colorMode = React.useMemo(
@@ -44,9 +42,18 @@ export default function ThemeChanger({children}) {
                             contrastText: "#fff",
                         },
                         menu: {
-                            main: "#1976d2",
-                            light: "#42a5f5",
-                            dark: "#1565c0",
+                            main: "#FBFEFE",
+                            light: "#FBFEFE",
+                            dark: "#272727",
+                            contrastText: "#000",
+                        },
+                        text: {
+                            main: "#8e8e8e",
+                        },
+                        textColor: {
+                            main: "#000",
+                            light: "#FFF",
+                            dark: "#000",
                             contrastText: "#fff",
                         },
                     },
@@ -55,11 +62,9 @@ export default function ThemeChanger({children}) {
             ),
         [mode]
     );
-    return(
+    return (
         <ColorModeContext.Provider value={colorMode}>
-            <ThemeProvider theme={theme}>
-               {children}
-            </ThemeProvider>
+            <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </ColorModeContext.Provider>
-    )
+    );
 }
