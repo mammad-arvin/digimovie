@@ -79,7 +79,7 @@ const Report = () => {
                 gap="15px"
                 borderRadius="30px"
                 bgcolor={mode === "dark" ? "#1D1D1D" : "#FFFFFF"}
-                zIndex={2}
+                zIndex={1}
             >
                 {/* cover Image */}
                 <Image

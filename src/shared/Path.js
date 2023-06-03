@@ -22,7 +22,7 @@ const Path = ({ category, title, slug }) => {
                 alignItems="center"
                 color={text.primary}
                 gap="10px"
-                zIndex={2}
+                zIndex={1}
             >
                 <FmdGoodIcon
                     fontSize="small"
