@@ -32,7 +32,7 @@ const NastedItem = ({ items, itemImage }) => {
                     top: "43px",
                     left: "-450px",
                     borderRadius: "8px",
-                    background: `${mode === "dark" ? "rgba(29, 29, 29, .8)" : "#FFF"}`,
+                    background: `${mode === "dark" ? "rgba(29, 29, 29, .86)" : "#FFF"}`,
                     zIndex:2,
                     "::before": {
                         content: '""',
@@ -43,7 +43,7 @@ const NastedItem = ({ items, itemImage }) => {
                         top:"-5px",
                         right:"180px",
                         transform:"rotateZ(-45deg)",
-                        background: `${mode === "dark" ? "rgba(29, 29, 29, .8)" : "#FFF"}`,
+                        background: `${mode === "dark" ? "rgba(29, 29, 29, .86)" : "#FFF"}`,
                     },
                 }}
             >
