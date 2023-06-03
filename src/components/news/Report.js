@@ -122,7 +122,7 @@ const Report = () => {
                         </Grid>
                         <Grid
                             item
-                            xs={8}
+                            xs={9}
                             display="flex"
                             gap="20px"
                             sx={{ direction: "ltr" }}
