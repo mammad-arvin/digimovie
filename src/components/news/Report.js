@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
 // component
 import Path from "../../shared/Path";
+import PageViews from "../../shared/PageViews";
+import ShowTimeAgo from "../../shared/ShowTimeAgo";
 
 // mui
-import { Box, Grid , Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import Image from "mui-image";
 
@@ -19,31 +21,37 @@ import { useParams } from "react-router-dom";
 // icons
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
+import InsertCommentIcon from "@mui/icons-material/InsertComment";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
 const Report = () => {
     const {
-        palette: { text },
+        palette: { text, mode },
     } = useTheme();
 
-    const { slug } = useParams();
+    const { LocalSlug } = useParams();
 
     const { loading, data, error } = useQuery(GET_REPORT_OF_NEWS, {
         variables: {
-            slug: slug,
+            slug: LocalSlug,
         },
     });
 
+    // for show liked or not liked icons
+    const [liked, setLiked] = useState(false);
+
     if (data) {
         var {
-            // id,
             image: { url },
             description: { html },
             liks,
-            // slug,
+            pageview,
+            slug,
             title,
             videoLink,
             uploadDate,
-            comments: { id },
+            comments,
         } = data.news;
     }
 
@@ -65,13 +73,12 @@ const Report = () => {
                 xs={12}
                 md={10.8}
                 color={text.primary}
-                fontFamily="iranYekan"
                 p="15px"
                 pb="30px"
                 mb="40px"
                 gap="15px"
                 borderRadius="30px"
-                bgcolor="#1D1D1D"
+                bgcolor={mode === "dark" ? "#1D1D1D" : "#FFFFFF"}
                 zIndex={2}
             >
                 {/* cover Image */}
@@ -85,27 +92,75 @@ const Report = () => {
                 />
 
                 {/* icons */}
-                <Grid container xs={12}
-                //  bgcolor="green"
-                 >
-                    <Grid
-                        item
-                        // xs={4}
-                        p="8px 10px"
-                        borderRadius="20px"
-                        bgcolor="#3A3A3A"
-                        display="flex"
-                        flexDirection="row"
-                        alignItems="center"
-                        gap="7px"
-                    >
+                {!loading && (
+                    <Grid container xs={12} justifyContent="space-between">
+                        <Grid
+                            item
+                            display="flex"
+                            flexDirection="row"
+                            alignItems="center"
+                            p="8px 10px"
+                            borderRadius="20px"
+                            bgcolor={mode === "dark" ? "#3A3A3A" : "#ececec"}
+                            gap="7px"
+                        >
+                            {!liked ? (
+                                <FavoriteBorderIcon
+                                    color="favMovie"
+                                    sx={{ fontSize: "20px" }}
+                                    onClick={() => setLiked(true)}
+                                />
+                            ) : (
+                                <FavoriteIcon
+                                    color="favMovie"
+                                    sx={{ fontSize: "20px" }}
+                                    onClick={() => setLiked(false)}
+                                />
+                            )}
 
-                        <FavoriteBorderIcon color="favMovie" sx={{fontSize:"20px"}} />
-                        {/* <FavoriteIcon color="favMovie" sx={{fontSize:"20px"}}/> */}
-                        <Typography>{liks}</Typography>
+                            <Typography>{liks}</Typography>
+                        </Grid>
+                        <Grid
+                            item
+                            xs={8}
+                            display="flex"
+                            gap="20px"
+                            sx={{ direction: "ltr" }}
+                        >
+                            {/* date of write | time ago */}
+                            <Stack
+                                direction="row"
+                                alignItems="center"
+                                gap="5px"
+                            >
+                                <ShowTimeAgo date={uploadDate} />
+                                <CalendarMonthIcon />
+                            </Stack>
+
+                            {/* comment counter */}
+                            <Stack
+                                direction="row"
+                                alignItems="center"
+                                gap="5px"
+                            >
+                                <Typography>
+                                    {data && comments.length}
+                                </Typography>
+                                <InsertCommentIcon />
+                            </Stack>
+
+                            {/* page views */}
+                            <Stack
+                                direction="row"
+                                alignItems="center"
+                                gap="5px"
+                            >
+                                <PageViews pageview={pageview} slug={slug} />
+                                <RemoveRedEyeOutlinedIcon />
+                            </Stack>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={8}></Grid>
-                </Grid>
+                )}
 
                 {/* details */}
                 <Box
