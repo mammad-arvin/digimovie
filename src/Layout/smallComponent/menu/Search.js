@@ -25,6 +25,7 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 // helper functions
 import { joinGenre } from "../../../helpers/helperFunctions";
 import { useTheme } from "@emotion/react";
+import { Translate } from "@mui/icons-material";
 
 function sleep(delay = 0) {
     return new Promise((resolve) => {
@@ -76,7 +77,7 @@ const Search = () => {
         <>
             <Autocomplete
                 id="asynchronous-demo"
-                sx={{ width: { xs: "95%", sm: "100%", lg: "330px" } }}
+                sx={{ width: { xs: "95%", sm: "100%", lg: "330px" , zIndex:"2" } }}
                 open={open}
                 onOpen={() => {
                     setOpen(true);
@@ -178,6 +179,12 @@ const Search = () => {
                                                                 <ListItem
                                                                     sx={{
                                                                         height: "93.18px",
+                                                                        transition:".3s",
+                                                                        ":hover":{
+                                                                            opacity:".8",
+                                                                            transform:"translateY(-5px)",
+                                                                            transition:".3s"
+                                                                        }
                                                                     }}
                                                                 >
                                                                     <Box
