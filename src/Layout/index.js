@@ -73,7 +73,7 @@ const Layout = ({ children }) => {
                     </Box>
                 )}
                 <Header />
-                <Stack sx={{ minHeight: "700px", alignItems: "center" }}>
+                <Stack sx={{ minHeight: "400px", alignItems: "center" }}>
                     {children}
                 </Stack>
                 <Footer />
