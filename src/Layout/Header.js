@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { Link } from "react-router-dom";
 
@@ -19,15 +19,13 @@ import ModeChangerBtn from "./smallComponent/ModeChangerBtn";
 import Menu from "./smallComponent/menu/Menu";
 
 const Header = () => {
-    const {palette:{mode}} = useTheme();
+    const {
+        palette: { mode },
+    } = useTheme();
     const logo = mode === "dark" ? LightLogo : DarkLogo;
 
-    // read comment 1
-    const [logined, setLogined] = useState(false);
-    // useEffect(()=>{
-
-    //     const user=localStorage.getItem(userId);
-    // } ,[])
+    // Get userid for loged in user
+    const userId = localStorage.getItem("userId");
 
     return (
         <>
@@ -39,7 +37,7 @@ const Header = () => {
                     boxShadow: "none",
                 }}
             >
-                
+
                 {/* Toolbar */}
 
                 <Toolbar>
@@ -47,7 +45,6 @@ const Header = () => {
                         container
                         sx={{
                             display: "flex",
-                            justifyContent: "space-between",
                             justifyContent: "center",
                             alignItems: "center",
                             minHeight: "101px",
@@ -96,7 +93,7 @@ const Header = () => {
                         </Grid>
 
                         {/* log in and profile view */}
-                        {!logined ? (
+                        {userId ? (
                             <Grid
                                 item
                                 xs={12}
