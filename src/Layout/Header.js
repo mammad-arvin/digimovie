@@ -104,7 +104,7 @@ const Header = () => {
                                     justifyContent: "center",
                                 }}
                             >
-                                <Profile />
+                                <Profile userId={userId} />
                             </Grid>
                         ) : (
                             <Grid item xs={12} sm={4} md={4} lg={3}>
