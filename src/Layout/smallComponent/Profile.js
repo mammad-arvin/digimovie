@@ -14,7 +14,17 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 // helper functions
 import { miniName } from "../../helpers/helperFunctions";
 
-const Profile = () => {
+// query 
+import { useQuery } from "@apollo/client";
+import { GET_USER_INFO_FOR_LOGED_IN_USER } from "../../graphql/queries";
+
+const Profile = ({userId}) => {
+
+    // get user info by user id
+    const { data } =useQuery(GET_USER_INFO_FOR_LOGED_IN_USER ,{
+        variables:{userId}
+    })
+
     const {
         palette: { mode },
     } = useTheme();
@@ -55,7 +65,7 @@ const Profile = () => {
                             fontWeight={400}
                             fontSize={13.6}
                         >
-                            {miniName("dfsdfsdfsf")}
+                            {data && miniName(data.registeredUser.userName)}
                         </Typography>
                         <KeyboardArrowDownIcon fontSize="small" />
                     </Box>
