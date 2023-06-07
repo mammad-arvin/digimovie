@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Path from "../../shared/Path";
 import PageViews from "../../shared/PageViews";
 import ShowTimeAgo from "../../shared/ShowTimeAgo";
+import Liks from "../../shared/Liks";
 
 // mui
 import { Box, Grid, Stack, Typography } from "@mui/material";
@@ -19,8 +20,6 @@ import { GET_REPORT_OF_NEWS } from "../../graphql/queries";
 import { useParams } from "react-router-dom";
 
 // icons
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -37,9 +36,6 @@ const Report = () => {
             slug: LocalSlug,
         },
     });
-
-    // for show liked or not liked icons
-    const [liked, setLiked] = useState(false);
 
     if (data) {
         var {
@@ -94,32 +90,9 @@ const Report = () => {
                 {/* icons */}
                 {!loading && (
                     <Grid container xs={12} justifyContent="space-between">
-                        <Grid
-                            item
-                            display="flex"
-                            flexDirection="row"
-                            alignItems="center"
-                            p="8px 10px"
-                            borderRadius="20px"
-                            bgcolor={mode === "dark" ? "#3A3A3A" : "#ececec"}
-                            gap="7px"
-                        >
-                            {!liked ? (
-                                <FavoriteBorderIcon
-                                    color="favMovie"
-                                    sx={{ fontSize: "20px" }}
-                                    onClick={() => setLiked(true)}
-                                />
-                            ) : (
-                                <FavoriteIcon
-                                    color="favMovie"
-                                    sx={{ fontSize: "20px" }}
-                                    onClick={() => setLiked(false)}
-                                />
-                            )}
+                        {/* Liks  Grid */}
+                        <Liks liks={liks} slug={slug} />
 
-                            <Typography>{liks}</Typography>
-                        </Grid>
                         <Grid
                             item
                             xs={9}
