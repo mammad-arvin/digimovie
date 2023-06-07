@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 // mui
 import { Box, Grid } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 // icons
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
@@ -23,16 +24,32 @@ const boxStyle = {
 };
 
 const SignINSignUp = () => {
+    const {
+        palette: { text, mode },
+    } = useTheme();
+
     return (
         <>
-            <Grid container sx={{ gap: "10px", justifyContent: "center" }}>
+            <Grid
+                container
+                color={text.primary}
+                sx={{ gap: "10px", justifyContent: "center" }}
+            >
                 <Link to="/signin">
-                    <Box item bgcolor="#242424" sx={boxStyle}>
+                    <Box
+                        item
+                        bgcolor={mode === "dark" ? "#242424" : "#CCCCCC"}
+                        sx={boxStyle}
+                    >
                         وارد شوید <ExitToAppIcon />
                     </Box>
                 </Link>
                 <Link to="/signup">
-                    <Grid item bgcolor="#242424" sx={boxStyle}>
+                    <Grid
+                        item
+                        bgcolor={mode === "dark" ? "#242424" : "#CCCCCC"}
+                        sx={boxStyle}
+                    >
                         ثبت نام
                         <PersonAddAltIcon />
                     </Grid>
