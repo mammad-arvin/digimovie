@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // MUI
 import { Box, Button, Divider, Grid, TextField } from "@mui/material";
@@ -9,22 +9,84 @@ import Image from "mui-image";
 import SignInImage from "../../assets/image/signIn.webp";
 import { Link } from "react-router-dom";
 
+// component
+import LinerLoading from "../../shared/LinerLoading";
+
+// query
+import { useLazyQuery } from "@apollo/client";
+import { GET_DATA_OF_USER_FOR_LOGE_IN_WITH_EMAIL } from "../../graphql/queries";
+import { GET_DATA_OF_USER_FOR_LOGE_IN_WITH_USERNAME } from "../../graphql/queries";
+
+// for Alert
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const SignIn = () => {
     const {
         palette: { text },
     } = useTheme();
 
+    const [name_email, setName_email] = useState("");
+    const [passWord, setPassWord] = useState("");
+
+    // FOR ALERT
+    const [alert_succ, setAlert_succ] = useState(false);
+    const [alert_war, setAlert_war] = useState(false);
+    const [alert_err, setAlert_err] = useState(false);
+
+    // detect query for email or userName
+    let query;
+    if (name_email.includes("@")) {
+        query = GET_DATA_OF_USER_FOR_LOGE_IN_WITH_EMAIL;
+    } else {
+        query = GET_DATA_OF_USER_FOR_LOGE_IN_WITH_USERNAME;
+    }
+
+    // QUERY
+    const [sendQuery, { loading, data }] = useLazyQuery(query, {
+        variables: {
+            name_email,
+        },
+    });
+
+    useEffect(() => {
+        if (data) {
+            if (data.registeredUser !== null) {
+                if (data.registeredUser.psassword === passWord) {
+                    localStorage.setItem("userId", data.registeredUser.id);
+                    setAlert_succ(true);
+                    setTimeout(() => window.location.reload(), 3000);
+                } else {
+                    setAlert_err(true);
+                }
+            } else {
+                setAlert_war(true);
+            }
+        }
+    }, [data]);
+
+    const signInHandler = () => {
+        if (name_email && passWord) {
+            sendQuery();
+        } else {
+            setAlert_war(true);
+        }
+    };
+
     return (
         <>
             <Box
-                mt="30px"
+                mt="50px"
                 sx={{
-                    width: "100vw" ,
-                    height: "100vh",
+                    width: "100vw",
+                    mb:{ xs:"100px", md:"20px"},
                 }}
                 zIndex={1}
             >
-                <Grid container xs={11.5} color={text.primary} >
+                <Grid container xs={11.5} color={text.primary}>
                     <Grid
                         item
                         xs={12}
@@ -48,18 +110,40 @@ const SignIn = () => {
                             </Box>
 
                             <TextField
+                                value={name_email}
+                                onChange={({ target: { value } }) =>
+                                    setName_email(value)
+                                }
                                 id="user_Email_Name"
                                 label="نام کاربری یا آدرس ایمیل"
                             />
-                            <TextField id="passWord" label="رمز عبور" />
-                            <Button
-                                variant="contained"
-                                color="warning"
-                                size="large"
-                                type="submit"
-                            >
-                                ورود
-                            </Button>
+                            <TextField
+                                value={passWord}
+                                onChange={({ target: { value } }) =>
+                                    setPassWord(value)
+                                }
+                                id="passWord"
+                                label="رمز عبور"
+                            />
+                            {!loading ? (
+                                <Button
+                                    variant="contained"
+                                    color="warning"
+                                    size="large"
+                                    onClick={signInHandler}
+                                >
+                                    ورود
+                                </Button>
+                            ) : (
+                                <Button
+                                    variant="contained"
+                                    color="warning"
+                                    size="large"
+                                    disabled
+                                >
+                                    ورود
+                                </Button>
+                            )}
                             <Box fontSize="23px" mt="15px" mb="15px">
                                 <Divider textAlign="center">یا </Divider>
                             </Box>
@@ -91,6 +175,39 @@ const SignIn = () => {
                     </Grid>
                 </Grid>
             </Box>
+
+            {/* show alert */}
+            <Snackbar
+                open={alert_succ}
+                autoHideDuration={2000}
+                onClose={() => setAlert_succ(false)}
+            >
+                <Alert severity="success" sx={{ width: "100%" }}>
+                    شما وارد شدید
+                </Alert>
+            </Snackbar>
+
+            <Snackbar
+                open={alert_war}
+                autoHideDuration={2000}
+                onClose={() => setAlert_war(false)}
+            >
+                <Alert severity="warning" sx={{ width: "100%" }}>
+                    اطلاعات خود را برسی و مجددا تلاش کنید.
+                </Alert>
+            </Snackbar>
+            <Snackbar
+                open={alert_err}
+                autoHideDuration={2000}
+                onClose={() => setAlert_err(false)}
+            >
+                <Alert severity="error" sx={{ width: "100%" }}>
+                    رمز عبور اشتباه است
+                </Alert>
+            </Snackbar>
+
+            {/* liner Loading */}
+            {loading && <LinerLoading />}
         </>
     );
 };
