@@ -26,6 +26,12 @@ export default function ProfileMenuItem() {
         setAnchorEl(null);
     };
 
+    // exit Handler
+    const exitHnadler=()=>{
+        localStorage.clear();
+        window.location.reload();
+    }
+
     return (
         <>
             <Button
@@ -84,7 +90,7 @@ export default function ProfileMenuItem() {
                     ویرایش پروفایل
                 </MenuItem>
                 <Divider variant="middle" />
-                <MenuItem sx={itemStyles} disableRipple onClick={handleClose}>
+                <MenuItem sx={itemStyles} disableRipple onClick={()=> exitHnadler() }>
                     خروج
                 </MenuItem>
             </Menu>
