@@ -23,6 +23,9 @@ const Path = ({ category, title, slug }) => {
                 color={text.primary}
                 gap="10px"
                 zIndex={1}
+                sx={{
+                    fontSize:{xs:"10px", sm:"13.6px" }
+                }}  
             >
                 <FmdGoodIcon
                     fontSize="small"
