@@ -13,6 +13,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 //  GraphQL
 import { useMutation } from "@apollo/client";
 import { iNCREASE_AND_DECREASE_LIKS } from "../graphql/mutations";
+import { SEND_USER_LIKED_CONTENT } from "../graphql/mutations";
 
 // for alert
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -26,6 +27,21 @@ const Liks = ({ liks, slug }) => {
 
     // user Registred?
     const userId = localStorage.getItem("userId");
+
+    //user Liked?
+    const getFromLocal = JSON.parse(localStorage.getItem("likedContent"));
+    let likedContent = [];
+    if (getFromLocal) {
+        likedContent = [...getFromLocal];
+    }
+    
+    let thisItemLiked;
+    if (likedContent) {
+        thisItemLiked = likedContent.find((item) => item === slug);
+    }
+
+    // mutation for sent user liked Content
+    const [sendUserLikedContent]=useMutation(SEND_USER_LIKED_CONTENT)
 
     // for alert
     const [alert_succ, setAlert_succ] = useState(false);
@@ -85,6 +101,11 @@ const Liks = ({ liks, slug }) => {
                     slug,
                 },
             });
+
+            // submit to user likedContent
+            likedContent=likedContent.filter(item =>item !== slug);
+            submitToLocal_Graph();
+
             war_handleClick();
         } else {
             error_handleClick();
@@ -101,11 +122,26 @@ const Liks = ({ liks, slug }) => {
                     slug,
                 },
             });
+
+            // submit to user likedContent
+            likedContent.push(slug);
+            submitToLocal_Graph();
+
             succ_handleClick();
         } else {
             error_handleClick();
         }
     };
+
+    // for submit and clean code
+    const submitToLocal_Graph=()=>{
+        localStorage.setItem("likedContent", JSON.stringify(likedContent));
+            sendUserLikedContent({
+                variables:{
+                    userId , likedContent
+                }
+            })
+    }
 
     return (
         <>
@@ -119,7 +155,7 @@ const Liks = ({ liks, slug }) => {
                 bgcolor={mode === "dark" ? "#3A3A3A" : "#ececec"}
                 gap="7px"
             >
-                {!liked ? (
+                {!liked && !thisItemLiked ? (
                     <FavoriteBorderIcon
                         color="favMovie"
                         sx={{ fontSize: "20px" }}
@@ -142,10 +178,7 @@ const Liks = ({ liks, slug }) => {
                 autoHideDuration={1500}
                 onClose={succ_handleClose}
             >
-                <Alert
-                    severity="success"
-                    sx={{ width: "100%" }}
-                >
+                <Alert severity="success" sx={{ width: "100%" }}>
                     لایک شما ثبت شد!
                 </Alert>
             </Snackbar>
@@ -155,10 +188,7 @@ const Liks = ({ liks, slug }) => {
                 autoHideDuration={1500}
                 onClose={war_handleClose}
             >
-                <Alert
-                    severity="warning"
-                    sx={{ width: "100%" }}
-                >
+                <Alert severity="warning" sx={{ width: "100%" }}>
                     لایک شما برداشته شد!
                 </Alert>
             </Snackbar>
@@ -168,10 +198,7 @@ const Liks = ({ liks, slug }) => {
                 autoHideDuration={1500}
                 onClose={error_handleClose}
             >
-                <Alert
-                    severity="error"
-                    sx={{ width: "100%" }}
-                >
+                <Alert severity="error" sx={{ width: "100%" }}>
                     ابتدا باید وارد حساب کاربریتان شوید!
                 </Alert>
             </Snackbar>
