@@ -12,10 +12,10 @@ const SEND_PAGE_VIEWS = gql`
     }
 `;
 
-// in_de_crease liks 
+// in_de_crease liks
 const iNCREASE_AND_DECREASE_LIKS = gql`
-    mutation changerLikes($slug: String! , $liks: Int!){
-        updateNews(data: { liks: $liks }, where: { slug: $slug }){
+    mutation changerLikes($slug: String!, $liks: Int!) {
+        updateNews(data: { liks: $liks }, where: { slug: $slug }) {
             id
         }
         publishNews(where: { slug: $slug }) {
@@ -24,4 +24,19 @@ const iNCREASE_AND_DECREASE_LIKS = gql`
     }
 `;
 
-export { SEND_PAGE_VIEWS, iNCREASE_AND_DECREASE_LIKS };
+// send and publish USER likedContent
+const SEND_USER_LIKED_CONTENT = gql`
+    mutation MyMutation($userId: ID!, $likedContent: Json!) {
+        updateRegisteredUser(
+            data: { likedContent: $likedContent }
+            where: { id: $userId }
+        ) {
+            id
+        }
+        publishRegisteredUser(where: { id: $userId }) {
+            id
+        }
+    }
+`;
+
+export { SEND_PAGE_VIEWS, iNCREASE_AND_DECREASE_LIKS, SEND_USER_LIKED_CONTENT };
