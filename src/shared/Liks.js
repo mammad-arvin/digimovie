@@ -139,11 +139,10 @@ const Liks = ({ liks, slug }) => {
             {/* show alert */}
             <Snackbar
                 open={alert_succ}
-                autoHideDuration={1000}
+                autoHideDuration={1500}
                 onClose={succ_handleClose}
             >
                 <Alert
-                    onClose={succ_handleClose}
                     severity="success"
                     sx={{ width: "100%" }}
                 >
@@ -153,11 +152,10 @@ const Liks = ({ liks, slug }) => {
 
             <Snackbar
                 open={alert_war}
-                autoHideDuration={1000}
+                autoHideDuration={1500}
                 onClose={war_handleClose}
             >
                 <Alert
-                    onClose={war_handleClose}
                     severity="warning"
                     sx={{ width: "100%" }}
                 >
@@ -167,15 +165,14 @@ const Liks = ({ liks, slug }) => {
 
             <Snackbar
                 open={alert_error}
-                autoHideDuration={1000}
+                autoHideDuration={1500}
                 onClose={error_handleClose}
             >
                 <Alert
-                    onClose={error_handleClose}
                     severity="error"
                     sx={{ width: "100%" }}
                 >
-                    ابتدا باید وارد شوید!
+                    ابتدا باید وارد حساب کاربریتان شوید!
                 </Alert>
             </Snackbar>
         </>
