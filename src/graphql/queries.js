@@ -74,6 +74,7 @@ const GET_DATA_OF_USER_FOR_LOGE_IN_WITH_USERNAME = gql`
         registeredUser(where: { userName: $name_email }) {
             id
             psassword
+            likedContent
         }
     }
 `;
@@ -83,6 +84,7 @@ const GET_DATA_OF_USER_FOR_LOGE_IN_WITH_EMAIL = gql`
         registeredUser(where: { email: $name_email }) {
             id
             psassword
+            likedContent
         }
     }
 `;
