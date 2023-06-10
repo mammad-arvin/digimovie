@@ -57,8 +57,9 @@ const SignIn = () => {
             if (data.registeredUser !== null) {
                 if (data.registeredUser.psassword === passWord) {
                     localStorage.setItem("userId", data.registeredUser.id);
+                    localStorage.setItem("likedContent", data.registeredUser.likedContent);
                     setAlert_succ(true);
-                    setTimeout(() => window.location.reload(), 3000);
+                    setTimeout(() => window.location.reload(), 2200);
                 } else {
                     setAlert_err(true);
                 }
