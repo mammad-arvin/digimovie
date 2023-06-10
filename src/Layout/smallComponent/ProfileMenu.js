@@ -28,7 +28,7 @@ export default function ProfileMenuItem() {
 
     // exit Handler
     const exitHnadler=()=>{
-        localStorage.clear();
+        localStorage.setItem("userId", "");
         window.location.reload();
     }
 
