@@ -7,7 +7,7 @@ import { useTheme } from "@emotion/react";
 // image
 import Image from "mui-image";
 import SignInImage from "../../assets/image/signIn.webp";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
 
 // component
 import LinerLoading from "../../shared/LinerLoading";
@@ -51,6 +51,13 @@ const SignIn = () => {
             name_email,
         },
     });
+
+    // redirect to home if user loged in 
+    const navigate=useNavigate()
+    useEffect(()=>{
+        const userId=localStorage.getItem("userId");
+        userId && navigate("/")
+    },[])
 
     useEffect(() => {
         if (data) {
