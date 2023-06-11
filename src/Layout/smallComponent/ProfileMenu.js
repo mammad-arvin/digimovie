@@ -27,10 +27,11 @@ export default function ProfileMenuItem() {
     };
 
     // exit Handler
-    const exitHnadler=()=>{
-        localStorage.setItem("userId", "");
+    const exitHnadler = () => {
+        localStorage.removeItem("userId");
+        localStorage.removeItem("likedContent");
         window.location.reload();
-    }
+    };
 
     return (
         <>
@@ -59,7 +60,7 @@ export default function ProfileMenuItem() {
                 sx={{
                     position: "absolute",
                     top: "30px",
-                    left: { xs:"0px" , md:"-60px"},
+                    left: { xs: "0px", md: "-60px" },
                 }}
             >
                 <MenuItem sx={itemStyles} disableRipple onClick={handleClose}>
@@ -90,7 +91,11 @@ export default function ProfileMenuItem() {
                     ویرایش پروفایل
                 </MenuItem>
                 <Divider variant="middle" />
-                <MenuItem sx={itemStyles} disableRipple onClick={()=> exitHnadler() }>
+                <MenuItem
+                    sx={itemStyles}
+                    disableRipple
+                    onClick={() => exitHnadler()}
+                >
                     خروج
                 </MenuItem>
             </Menu>
