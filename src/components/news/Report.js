@@ -5,6 +5,7 @@ import Path from "../../shared/Path";
 import PageViews from "../../shared/PageViews";
 import ShowTimeAgo from "../../shared/ShowTimeAgo";
 import Liks from "../../shared/Liks";
+import LinerLoading from "../../shared/LinerLoading";
 
 // mui
 import { Box, Grid, Stack, Typography } from "@mui/material";
@@ -159,6 +160,7 @@ const Report = () => {
                     </Box>
                 )}
             </Grid>
+            {loading && <LinerLoading />}
         </>
     );
 };
