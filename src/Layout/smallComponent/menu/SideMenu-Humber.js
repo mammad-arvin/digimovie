@@ -17,7 +17,6 @@ import Image from "mui-image";
 import darkLogo from "../../../assets/image/layout-images/dark_logo.webp";
 import lightLogo from "../../../assets/image/layout-images/light-logo.webp";
 
-
 // icons
 import CancelIcon from "@mui/icons-material/Cancel";
 import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
@@ -79,7 +78,7 @@ export default function SideMenu() {
                     { t: "دانلود سریال", l: "/series" },
                     { t: "هنرمندان", l: "/artists" },
                     { t: "تماس با ما", l: "/contact" },
-                ].map((text ,index) => (
+                ].map((text, index) => (
                     <React.Fragment key={index}>
                         {text.t === "دانلود فیلم" ? (
                             <ListItem
@@ -213,9 +212,11 @@ export default function SideMenu() {
         <>
             {["right"].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)} color="text">
-                        <MenuIcon fontSize="large" />
-                    </Button>
+                    <MenuIcon
+                        fontSize="large"
+                        onClick={toggleDrawer(anchor, true)}
+                        color="text"
+                    />
                     <SwipeableDrawer
                         anchor={anchor}
                         open={state[anchor]}
