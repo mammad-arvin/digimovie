@@ -83,7 +83,6 @@ export default function SideMenu() {
                     <React.Fragment key={index}>
                         {text.t === "دانلود فیلم" ? (
                             <ListItem
-                                nested
                                 sx={{
                                     my: 1,
                                     display: "flex",
@@ -137,7 +136,6 @@ export default function SideMenu() {
                             </ListItem>
                         ) : text.t === "دانلود سریال" ? (
                             <ListItem
-                                nested
                                 sx={{
                                     my: 1,
                                     display: "flex",

@@ -115,8 +115,6 @@ const Header = () => {
                 </Toolbar>
                 <Menu />
             </AppBar>
-
-            <Box spacing={4} direction="row"></Box>
         </>
     );
 };
