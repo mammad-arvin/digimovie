@@ -94,7 +94,7 @@ const SignIn = () => {
                 }}
                 zIndex={1}
             >
-                <Grid container xs={11.5} color={text.primary}>
+                <Grid container width={"96%"} color={text.primary}>
                     <Grid
                         item
                         xs={12}
