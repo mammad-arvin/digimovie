@@ -37,7 +37,6 @@ const SignINSignUp = () => {
             >
                 <Link to="/signin">
                     <Box
-                        item
                         bgcolor={mode === "dark" ? "#242424" : "#CCCCCC"}
                         sx={boxStyle}
                     >
