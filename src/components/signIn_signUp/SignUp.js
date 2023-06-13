@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // router dom
 import { useNavigate } from "react-router-dom";
@@ -30,7 +30,7 @@ const SignUp = () => {
         palette: { text },
     } = useTheme();
 
-    // redirect to home if user loged in
+    // redirect to home if user loged in or signed up
     const navigate = useNavigate();
     useEffect(() => {
         const userId = localStorage.getItem("userId");
@@ -39,7 +39,6 @@ const SignUp = () => {
 
     // STATES FOR ALERT
     const [alert_succ, setAlert_succ] = useState(false);
-    const [alert_war, setAlert_war] = useState(false);
     const [alert_err, setAlert_err] = useState(false);
 
     // states FOR form
@@ -49,38 +48,70 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
 
-
     // mutation
     const [createUser, { loading, data, error }] = useMutation(CREATE_USER);
 
     // Regex
     const userRegex = /^[a-zA-Z\-]+$/;
-    const emailRegex =
-        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     const passRegex = /^[a-zA-Z0-9!@#$%^&*]{6,16}$/;
     const phoneRegex = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
 
-    // validation
-    const userRef=useRef(null)
-    const passRef=useRef(null)
-    useEffect(()=>{
-        if(!userRegex.test(userName)){
-            // userRef.current.style.outLineColor= "2px solid red";            
-            userRef.color= "warning";            
-        }else{
-            userRef.current.style.borderColor= "inherit";            
+    // field validation
+    const regexValidation = (regex, value) => {
+        if (value) {
+            return !regex.test(value);
         }
-    
-    },[userName, passWord, email, phone, rePassWord])
-    const signUpHandler = () => {
-       
-       console.log();
-        // if (name_email && passWord) {
-        //     sendQuery();
-        // } else {
-        //     setAlert_war(true);
-        // }
     };
+
+    // form  validation
+    const formResult = () => {
+        if (
+            rePassWord === passWord &&
+            !regexValidation(userRegex, userName) &&
+            !regexValidation(passRegex, passWord) &&
+            !regexValidation(emailRegex, email) &&
+            !regexValidation(phoneRegex, phone) &&
+            userName.length > 3 &&
+            passWord.length > 5 &&
+            email.length > 4 &&
+            phone.length >= 10
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    // sent data when form validated
+    const signUpHandler = () => {
+        if (formResult()) {
+            createUser({
+                variables: {
+                    userName,
+                    email,
+                    passWord,
+                    phone,
+                },
+            });
+        }
+    };
+
+    // success ? so setItem |   error ? show Alert of error
+    useEffect(() => {
+        if (data) {
+            console.log(data);
+            localStorage.setItem("userId", data.publishRegisteredUser.id);
+            localStorage.setItem(
+                "likedContent",
+                JSON.stringify(data.publishRegisteredUser.likedContent)
+            );
+            setAlert_succ(true);
+            setTimeout(() => window.location.reload(), 2800);
+        } else if (error) {
+            setAlert_err(true);
+        }
+    }, [data, error]);
 
     return (
         <>
@@ -92,7 +123,7 @@ const SignUp = () => {
                 }}
                 zIndex={1}
             >
-                <Grid container xs={11.5} color={text.primary}>
+                <Grid container width={"96%"} color={text.primary}>
                     <Grid
                         item
                         xs={12}
@@ -120,42 +151,52 @@ const SignUp = () => {
                                 onChange={({ target: { value } }) =>
                                     setUserName(value)
                                 }
-                                ref={userRef}
                                 label="نام کاربری"
+                                autoFocus={true}
+                                required={true}
+                                helperText="فقط حرف لاتین وارد کنید"
+                                error={regexValidation(userRegex, userName)}
                             />
                             <TextField
                                 value={passWord}
                                 onChange={({ target: { value } }) =>
                                     setPassWord(value)
                                 }
-                                id="passWord"
                                 label="رمز عبور"
+                                required={true}
+                                helperText="بین 6 تا 16 | عدد و حرف"
+                                error={regexValidation(passRegex, passWord)}
                             />
                             <TextField
                                 value={rePassWord}
                                 onChange={({ target: { value } }) =>
                                     setRePassWord(value)
                                 }
-                                id="RePassWord"
                                 label="تکرار رمز عبور"
+                                required={true}
+                                error={rePassWord !== passWord}
                             />
                             <TextField
                                 value={email}
                                 onChange={({ target: { value } }) =>
                                     setEmail(value)
                                 }
-                                id="email"
                                 label="ایمیل شما"
+                                required={true}
+                                helperText="ایمیل معتبر وارد کنید"
+                                error={regexValidation(emailRegex, email)}
                             />
                             <TextField
                                 value={phone}
                                 onChange={({ target: { value } }) =>
                                     setPhone(value)
                                 }
-                                id="phone"
                                 label="شماره موبایل"
+                                required={true}
+                                helperText="شماره تلفن معتبر وارد کنید"
+                                error={regexValidation(phoneRegex, phone)}
                             />
-                            {!loading ? (
+                            {!loading && formResult() ? (
                                 <Button
                                     variant="contained"
                                     color="warning"
@@ -171,7 +212,7 @@ const SignUp = () => {
                                     size="large"
                                     disabled
                                 >
-                                    عضویت در سایت
+                                    عضویت ( فرم را تکمیل کنید )
                                 </Button>
                             )}
                             <Box fontSize="23px" mt="15px" mb="15px">
@@ -203,30 +244,21 @@ const SignUp = () => {
             {/* show alert */}
             <Snackbar
                 open={alert_succ}
-                autoHideDuration={2000}
+                autoHideDuration={2500}
                 onClose={() => setAlert_succ(false)}
             >
                 <Alert severity="success" sx={{ width: "100%" }}>
-                    شما وارد شدید
+                    ثبت نام شما موفقیت آمیز بود
                 </Alert>
             </Snackbar>
 
             <Snackbar
-                open={alert_war}
-                autoHideDuration={2000}
-                onClose={() => setAlert_war(false)}
-            >
-                <Alert severity="warning" sx={{ width: "100%" }}>
-                    اطلاعات خود را برسی و مجددا تلاش کنید.
-                </Alert>
-            </Snackbar>
-            <Snackbar
                 open={alert_err}
-                autoHideDuration={2000}
+                autoHideDuration={3000}
                 onClose={() => setAlert_err(false)}
             >
                 <Alert severity="error" sx={{ width: "100%" }}>
-                    رمز عبور اشتباه است
+                    نام کاربری موجود میباشد .یا خطایی رخ داده است.
                 </Alert>
             </Snackbar>
 
