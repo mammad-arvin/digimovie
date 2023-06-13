@@ -39,4 +39,34 @@ const SEND_USER_LIKED_CONTENT = gql`
     }
 `;
 
-export { SEND_PAGE_VIEWS, iNCREASE_AND_DECREASE_LIKS, SEND_USER_LIKED_CONTENT };
+// create user
+const CREATE_USER = gql`
+    mutation MyMutation(
+        $userName: String!
+        $email: String!
+        $passWord: String!
+        $phone: String!
+    ) {
+        createRegisteredUser(
+            data: {
+                userName: $userName
+                email: $email
+                phone: $phone
+                psassword: $passWord
+            }
+        ) {
+            id
+        }
+        publishRegisteredUser(where: { userName: $userName }) {
+            id
+            likedContent
+        }
+    }
+`;
+
+export {
+    SEND_PAGE_VIEWS,
+    iNCREASE_AND_DECREASE_LIKS,
+    SEND_USER_LIKED_CONTENT,
+    CREATE_USER,
+};
