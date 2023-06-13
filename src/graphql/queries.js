@@ -1,12 +1,4 @@
 import { gql } from "@apollo/client";
-const GET_USERS = gql`
-    query MyQuery {
-        registeredUsers {
-            id
-            userName
-        }
-    }
-`;
 
 const GET_FILMS_DETAILS_FOR_SEARCH = gql`
     query MyQuery {
@@ -99,7 +91,6 @@ const GET_USER_INFO_FOR_LOGED_IN_USER = gql`
 `;
 
 export {
-    GET_USERS,
     GET_FILMS_DETAILS_FOR_SEARCH,
     GET_FOOTER_NEWS_GALLERY,
     GET_REPORT_OF_NEWS,
