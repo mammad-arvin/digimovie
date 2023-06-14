@@ -34,14 +34,14 @@ const Liks = ({ liks, slug }) => {
     if (getFromLocal) {
         likedContent = [...getFromLocal];
     }
-    
+
     let thisItemLiked;
     if (likedContent) {
         thisItemLiked = likedContent.find((item) => item === slug);
     }
 
     // mutation for sent user liked Content
-    const [sendUserLikedContent]=useMutation(SEND_USER_LIKED_CONTENT)
+    const [sendUserLikedContent] = useMutation(SEND_USER_LIKED_CONTENT);
 
     // for alert
     const [alert_succ, setAlert_succ] = useState(false);
@@ -103,7 +103,7 @@ const Liks = ({ liks, slug }) => {
             });
 
             // submit to user likedContent
-            likedContent=likedContent.filter(item =>item !== slug);
+            likedContent = likedContent.filter((item) => item !== slug);
             submitToLocal_Graph();
 
             war_handleClick();
@@ -134,14 +134,15 @@ const Liks = ({ liks, slug }) => {
     };
 
     // for submit and clean code
-    const submitToLocal_Graph=()=>{
+    const submitToLocal_Graph = () => {
         localStorage.setItem("likedContent", JSON.stringify(likedContent));
-            sendUserLikedContent({
-                variables:{
-                    userId , likedContent
-                }
-            })
-    }
+        sendUserLikedContent({
+            variables: {
+                userId,
+                likedContent,
+            },
+        });
+    };
 
     return (
         <>
@@ -178,9 +179,7 @@ const Liks = ({ liks, slug }) => {
                 autoHideDuration={1500}
                 onClose={succ_handleClose}
             >
-                <Alert severity="success" sx={{ width: "100%" }}>
-                    لایک شما ثبت شد!
-                </Alert>
+                <Alert severity="success">لایک شما ثبت شد!</Alert>
             </Snackbar>
 
             <Snackbar
@@ -188,9 +187,7 @@ const Liks = ({ liks, slug }) => {
                 autoHideDuration={1500}
                 onClose={war_handleClose}
             >
-                <Alert severity="warning" sx={{ width: "100%" }}>
-                    لایک شما برداشته شد!
-                </Alert>
+                <Alert severity="warning">لایک شما برداشته شد!</Alert>
             </Snackbar>
 
             <Snackbar
@@ -198,7 +195,7 @@ const Liks = ({ liks, slug }) => {
                 autoHideDuration={1500}
                 onClose={error_handleClose}
             >
-                <Alert severity="error" sx={{ width: "100%" }}>
+                <Alert severity="error">
                     ابتدا باید وارد حساب کاربریتان شوید!
                 </Alert>
             </Snackbar>
