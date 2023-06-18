@@ -90,6 +90,15 @@ const GET_USER_INFO_FOR_LOGED_IN_USER = gql`
     }
 `;
 
+// get news Slug for random Othre news
+const GET_NEWS_SLUGS = gql`
+    query MyQuery {
+        newss {
+            slug
+        }
+    }
+`;
+
 export {
     GET_FILMS_DETAILS_FOR_SEARCH,
     GET_FOOTER_NEWS_GALLERY,
@@ -97,4 +106,5 @@ export {
     GET_DATA_OF_USER_FOR_LOGE_IN_WITH_USERNAME,
     GET_DATA_OF_USER_FOR_LOGE_IN_WITH_EMAIL,
     GET_USER_INFO_FOR_LOGED_IN_USER,
+    GET_NEWS_SLUGS,
 };
