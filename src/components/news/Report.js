@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // component
 import Path from "../../shared/Path";
@@ -6,6 +6,7 @@ import PageViews from "../../shared/PageViews";
 import ShowTimeAgo from "../../shared/ShowTimeAgo";
 import Liks from "../../shared/Liks";
 import LinerLoading from "../../shared/LinerLoading";
+import OtherNews from "./OtherNews";
 
 // mui
 import { Box, Grid, Stack, Typography } from "@mui/material";
@@ -18,23 +19,26 @@ import { titleChanger } from "../../helpers/helperFunctions";
 // graphql
 import { useQuery } from "@apollo/client";
 import { GET_REPORT_OF_NEWS } from "../../graphql/queries";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 // icons
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import InsertCommentIcon from "@mui/icons-material/InsertComment";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 
-const Report = () => {
+const Report = ({ otherSlug }) => {
     const {
         palette: { text, mode },
     } = useTheme();
 
-    const { LocalSlug } = useParams();
+    const params = useParams();
 
-    const { loading, data, error } = useQuery(GET_REPORT_OF_NEWS, {
+    let localSlug;
+    otherSlug ? (localSlug = otherSlug) : (localSlug = params.LocalSlug);
+
+    const { loading, data } = useQuery(GET_REPORT_OF_NEWS, {
         variables: {
-            slug: LocalSlug,
+            slug: localSlug,
         },
     });
 
@@ -58,17 +62,25 @@ const Report = () => {
     return (
         <>
             {/* show the path thar use in ther. */}
-            <Path
-                category={{ t: "اخبار", l: "/news" }}
-                title={title}
-                slug={slug}
-            />
+            {!otherSlug && (
+                <Path
+                    category={{ t: "اخبار", l: "/news" }}
+                    title={title}
+                    slug={slug}
+                />
+            )}
 
             {/*content of report  */}
             <Grid
                 container
                 xs={12}
                 md={10.8}
+                sx={
+                    otherSlug && {
+                        height: { xs: "540px", sm: "460px" },
+                        overflow: "hidden",
+                    }
+                }
                 color={text.primary}
                 p="15px"
                 pb="30px"
@@ -79,17 +91,18 @@ const Report = () => {
                 zIndex={1}
             >
                 {/* cover Image */}
-                <Image
-                    src={url}
-                    sx={{
-                        borderRadius: "30px",
-                        widht: "99%",
-                        height: { md: "80vh", lg: "100vh" },
-                    }}
-                />
+                <Link to={"/news/" + slug}>
+                    <Image
+                        src={url}
+                        sx={{
+                            borderRadius: "30px",
+                            height: { md: "80vh", lg: "100vh" },
+                        }}
+                    />
+                </Link>
 
                 {/* icons */}
-                {!loading && (
+                {data && (
                     <Grid container xs={12} justifyContent="space-between">
                         {/* Liks  Grid */}
                         <Liks liks={liks} slug={slug} />
@@ -146,7 +159,7 @@ const Report = () => {
                 ></Box>
 
                 {/* video player */}
-                {videoLink && (
+                {videoLink && !otherSlug && (
                     <Box variant="div" display="flex" justifyContent="center">
                         <video
                             width="98%"
@@ -160,6 +173,42 @@ const Report = () => {
                     </Box>
                 )}
             </Grid>
+
+            {/* other news */}
+            {!otherSlug && data && (
+                <Grid
+                    container
+                    xs={12}
+                    md={11.4}
+                    color={text.primary}
+                    justifyContent={"center"}
+                    mb="40px"
+                    sx={{ gap: { sm: "10px", md: "0px" } }}
+                    zIndex={1}
+                >
+                    <Grid
+                        item
+                        xs={12}
+                        display={"flex"}
+                        justifyContent={"center"}
+                        mt={"35px"}
+                    >
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                maxWidth: "140px",
+                                borderBottom: "2px solid orange",
+                                marginBottom: "25px",
+                            }}
+                        >
+                            دیگر اخبار
+                        </Typography>
+                    </Grid>
+                    <OtherNews />
+                </Grid>
+            )}
+
+            {/* loading */}
             {loading && <LinerLoading />}
         </>
     );
