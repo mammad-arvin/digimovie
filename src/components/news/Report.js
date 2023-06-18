@@ -7,6 +7,7 @@ import ShowTimeAgo from "../../shared/ShowTimeAgo";
 import Liks from "../../shared/Liks";
 import LinerLoading from "../../shared/LinerLoading";
 import OtherNews from "./OtherNews";
+import Comments from "../../shared/Comments/Comments";
 
 // mui
 import { Box, Grid, Stack, Typography } from "@mui/material";
@@ -205,6 +206,13 @@ const Report = ({ otherSlug }) => {
                         </Typography>
                     </Grid>
                     <OtherNews />
+                </Grid>
+            )}
+
+            {/* Comments */}
+            {!otherSlug && data && (
+                <Grid container justifyContent={"center"} zIndex={1}>
+                    <Comments />
                 </Grid>
             )}
 
