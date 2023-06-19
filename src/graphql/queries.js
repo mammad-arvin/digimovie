@@ -52,7 +52,7 @@ const GET_REPORT_OF_NEWS = gql`
             title
             videoLink
             uploadDate
-            comments {
+            comment {
                 id
                 description
             }
