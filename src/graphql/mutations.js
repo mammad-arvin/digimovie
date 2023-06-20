@@ -64,9 +64,31 @@ const CREATE_USER = gql`
     }
 `;
 
+// create comment
+const CREATE_COMMENT_IN_NEWS = gql`
+    mutation MyMutation(
+        $userId: ID
+        $slug: String!
+        $spoil: Boolean!
+        $comentText: String!
+    ) {
+        createComment(
+            data: {
+                description: $comentText
+                spoil: $spoil
+                registeredUsercomment: { connect: { id: $userId } }
+                news: { connect: { slug: $slug } }
+            }
+        ) {
+            id
+        }
+    }
+`;
+
 export {
     SEND_PAGE_VIEWS,
     iNCREASE_AND_DECREASE_LIKS,
     SEND_USER_LIKED_CONTENT,
     CREATE_USER,
+    CREATE_COMMENT_IN_NEWS,
 };
