@@ -25,7 +25,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const SignUp = () => {
+const SignUp = ({ modal }) => {
     const {
         palette: { text },
     } = useTheme();
@@ -113,13 +113,16 @@ const SignUp = () => {
         }
     }, [data, error]);
 
+    // margin button
+    const margBott = modal ? "0px" : { xs: "100px", md: "20px" };
+
     return (
         <>
             <Box
-                mt="50px"
+                mt={!modal && "50px"}
                 sx={{
-                    width: "100vw",
-                    mb: { xs: "100px", md: "20px" },
+                    width: "100%",
+                    mb: margBott,
                 }}
                 zIndex={1}
             >
@@ -127,7 +130,7 @@ const SignUp = () => {
                     <Grid
                         item
                         xs={12}
-                        sm={6.2}
+                        sm={!modal ? 6.2 : 12}
                         display="flex"
                         flexDirection="column"
                         justifyContent="center"
@@ -138,7 +141,7 @@ const SignUp = () => {
                             flexDirection="column"
                             justifyContent="center"
                             gap="20px"
-                            sx={{ width: { xs: "90%", sm: "70%" } }}
+                            sx={{ width: { xs: "90%", sm: "80%", md: "72%" } }}
                         >
                             <Box fontSize="23px" mb="15px">
                                 <Divider textAlign="center">
@@ -215,29 +218,37 @@ const SignUp = () => {
                                     عضویت ( فرم را تکمیل کنید )
                                 </Button>
                             )}
-                            <Box fontSize="23px" mt="15px" mb="15px">
-                                <Divider textAlign="center">یا </Divider>
-                            </Box>
-                            <Button variant="outlined" href="/signin">
-                                ورود به پنل کاربری
-                            </Button>
+                            {!modal && (
+                                <>
+                                    <Box fontSize="23px" mt="15px" mb="15px">
+                                        <Divider textAlign="center">
+                                            یا{" "}
+                                        </Divider>
+                                    </Box>
+                                    <Button variant="outlined" href="/signin">
+                                        ورود به پنل کاربری
+                                    </Button>
+                                </>
+                            )}
                         </Box>
                     </Grid>
-                    <Grid
-                        item
-                        sm={5.8}
-                        sx={{ display: { xs: "none", sm: "block" } }}
-                    >
-                        <Image
-                            src={SignInImage}
-                            duration={1000}
-                            width={"100%"}
-                            height="100%"
-                            sx={{
-                                borderRadius: "15px",
-                            }}
-                        />
-                    </Grid>
+                    {!modal && (
+                        <Grid
+                            item
+                            sm={5.8}
+                            sx={{ display: { xs: "none", sm: "block" } }}
+                        >
+                            <Image
+                                src={SignInImage}
+                                duration={1000}
+                                width={"100%"}
+                                height="100%"
+                                sx={{
+                                    borderRadius: "15px",
+                                }}
+                            />
+                        </Grid>
+                    )}
                 </Grid>
             </Box>
 

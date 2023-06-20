@@ -7,7 +7,7 @@ import { useTheme } from "@emotion/react";
 // image
 import Image from "mui-image";
 import SignInImage from "../../assets/image/signIn.webp";
-import { Link ,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // component
 import LinerLoading from "../../shared/LinerLoading";
@@ -24,7 +24,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const SignIn = () => {
+const SignIn = ({ modal }) => {
     const {
         palette: { text },
     } = useTheme();
@@ -52,19 +52,22 @@ const SignIn = () => {
         },
     });
 
-    // redirect to home if user loged in 
-    const navigate=useNavigate()
-    useEffect(()=>{
-        const userId=localStorage.getItem("userId");
-        userId && navigate("/")
-    },[])
+    // redirect to home if user loged in
+    const navigate = useNavigate();
+    useEffect(() => {
+        const userId = localStorage.getItem("userId");
+        userId && navigate("/");
+    }, []);
 
     useEffect(() => {
         if (data) {
             if (data.registeredUser !== null) {
                 if (data.registeredUser.psassword === passWord) {
                     localStorage.setItem("userId", data.registeredUser.id);
-                    localStorage.setItem("likedContent", JSON.stringify(data.registeredUser.likedContent));
+                    localStorage.setItem(
+                        "likedContent",
+                        JSON.stringify(data.registeredUser.likedContent)
+                    );
                     setAlert_succ(true);
                     setTimeout(() => window.location.reload(), 2200);
                 } else {
@@ -84,13 +87,16 @@ const SignIn = () => {
         }
     };
 
+    // margin button
+    const margBott = modal ? "0px" : { xs: "100px", md: "20px" };
+
     return (
         <>
             <Box
-                mt="50px"
+                mt={!modal && "50px"}
                 sx={{
-                    width: "100vw",
-                    mb:{ xs:"100px", md:"20px"},
+                    width: "100%",
+                    mb: margBott,
                 }}
                 zIndex={1}
             >
@@ -98,7 +104,7 @@ const SignIn = () => {
                     <Grid
                         item
                         xs={12}
-                        sm={6.2}
+                        sm={!modal ? 6.2 : 12}
                         display="flex"
                         flexDirection="column"
                         justifyContent="center"
@@ -109,7 +115,7 @@ const SignIn = () => {
                             flexDirection="column"
                             justifyContent="center"
                             gap="20px"
-                            sx={{ width: { xs: "90%", sm: "70%" } }}
+                            sx={{ width: { xs: "90%", sm: "80%", md: "72%" } }}
                         >
                             <Box fontSize="23px" mb="15px">
                                 <Divider textAlign="center">
@@ -152,35 +158,44 @@ const SignIn = () => {
                                     ورود
                                 </Button>
                             )}
-                            <Box fontSize="23px" mt="15px" mb="15px">
-                                <Divider textAlign="center">یا </Divider>
-                            </Box>
-                            <Button variant="outlined" href="/signup">
-                                ثبت نام در سایت
-                            </Button>
+
+                            {!modal && (
+                                <>
+                                    <Box fontSize="23px" mt="15px" mb="15px">
+                                        <Divider textAlign="center">
+                                            یا{" "}
+                                        </Divider>
+                                    </Box>
+                                    <Button variant="outlined" href="/signup">
+                                        ثبت نام در سایت
+                                    </Button>
+                                </>
+                            )}
                             <Link
                                 to="#?"
-                                onClick={() => alert("Not Developed")}
+                                onClick={() => alert("توسعه داده نشده است")}
                             >
                                 آیا رمز عبور خود را فراموش کرده اید؟
                             </Link>
                         </Box>
                     </Grid>
-                    <Grid
-                        item
-                        sm={5.8}
-                        sx={{ display: { xs: "none", sm: "block" } }}
-                    >
-                        <Image
-                            src={SignInImage}
-                            duration={1000}
-                            width={"100%"}
-                            height="100%"
-                            sx={{
-                                borderRadius: "15px",
-                            }}
-                        />
-                    </Grid>
+                    {!modal && (
+                        <Grid
+                            item
+                            sm={5.8}
+                            sx={{ display: { xs: "none", sm: "block" } }}
+                        >
+                            <Image
+                                src={SignInImage}
+                                duration={1000}
+                                width={"100%"}
+                                height="100%"
+                                sx={{
+                                    borderRadius: "15px",
+                                }}
+                            />
+                        </Grid>
+                    )}
                 </Grid>
             </Box>
 
