@@ -1,11 +1,15 @@
 import React from "react";
 
 // MUI
-import { Grid } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 import { useTheme } from "@emotion/react";
-import Title from "./Title";
 
-const Comments = () => {
+// components
+import Title from "./Title";
+import SendComment from "./SendComment";
+import SignWithModal from "../../components/signIn_signUp/SignWithModal";
+
+const Comments = ({ comments }) => {
     const {
         palette: { text, mode },
     } = useTheme();
@@ -26,7 +30,19 @@ const Comments = () => {
             }}
         >
             {/* title */}
-            <Title />
+            <Title counter={comments.length} />
+
+            {/* send comment */}
+            {localStorage.getItem("userId") ? (
+                <SendComment />
+            ) : (
+                <Box position={"relative"}>
+                    <Typography textAlign={"center"} m={2}>
+                        برای انتشار دیدگاه خود ابتدا وارد شوید یا ثبت نام کنید
+                    </Typography>
+                    <SignWithModal />
+                </Box>
+            )}
         </Grid>
     );
 };
