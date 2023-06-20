@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // MUI
 import { Stack, FormControlLabel, Checkbox, Button, Box } from "@mui/material";
 import { useTheme } from "@emotion/react";
+
+// mui alert
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 // icons
 import SendIcon from "@mui/icons-material/Send";
@@ -11,6 +15,11 @@ import SendIcon from "@mui/icons-material/Send";
 import { useMutation } from "@apollo/client";
 import { CREATE_COMMENT_IN_NEWS } from "../../graphql/mutations";
 import { useParams } from "react-router-dom";
+
+// for alert
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const SendComment = () => {
     const {
@@ -36,6 +45,18 @@ const SendComment = () => {
             },
         }
     );
+
+    // alert
+    const [alert_succ, setAlert_succ] = useState(false);
+    const [alert_error, setAlert_error] = useState(false);
+
+    useEffect(() => {
+        data && setAlert_succ(true);
+    }, [loading]);
+
+    useEffect(() => {
+        error && setAlert_error(true);
+    }, [error]);
 
     return (
         <Stack>
@@ -69,7 +90,7 @@ const SendComment = () => {
                 label="این دیدگاه حاوی اسپویل است"
             />
             <Box height={"45px"} position={"relative"}>
-                {comentText ? (
+                {comentText && !loading ? (
                     <Button
                         variant="contained"
                         color="warning"
@@ -111,7 +132,7 @@ const SendComment = () => {
                         }}
                         disabled
                     >
-                        ارسال دیدگاه
+                        {loading ? "درحال ارسال..." : "ارسال دیدگاه"}
                         <SendIcon
                             sx={{
                                 fontSize: "18px",
@@ -123,6 +144,27 @@ const SendComment = () => {
                     </Button>
                 )}
             </Box>
+
+            {/* show alert */}
+            <Snackbar
+                open={alert_succ}
+                autoHideDuration={2000}
+                onClose={() => setAlert_succ(false)}
+            >
+                <Alert severity="success" sx={{ width: "100%" }}>
+                    دیدگاه شما ارسال و منتظر تایید است
+                </Alert>
+            </Snackbar>
+
+            <Snackbar
+                open={alert_error}
+                autoHideDuration={2000}
+                onClose={() => setAlert_error(false)}
+            >
+                <Alert severity="error">
+                    مشکلی رخ داده است دوباره تلاش کنید.
+                </Alert>
+            </Snackbar>
         </Stack>
     );
 };
