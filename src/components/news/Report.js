@@ -53,7 +53,7 @@ const Report = ({ otherSlug }) => {
             title,
             videoLink,
             uploadDate,
-            comments,
+            comment,
         } = data.news;
     }
 
@@ -132,7 +132,7 @@ const Report = ({ otherSlug }) => {
                                 gap="5px"
                             >
                                 <Typography>
-                                    {data && comments.length}
+                                    {data && comment.length}
                                 </Typography>
                                 <InsertCommentIcon />
                             </Stack>
@@ -212,7 +212,7 @@ const Report = ({ otherSlug }) => {
             {/* Comments */}
             {!otherSlug && data && (
                 <Grid container justifyContent={"center"} zIndex={1}>
-                    <Comments />
+                    <Comments comments={comment} />
                 </Grid>
             )}
 
