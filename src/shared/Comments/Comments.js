@@ -8,6 +8,7 @@ import { useTheme } from "@emotion/react";
 import Title from "./Title";
 import SendComment from "./SendComment";
 import SignWithModal from "../../components/signIn_signUp/SignWithModal";
+import ShowComments from "./showComment/ShowComments";
 
 const Comments = ({ comments }) => {
     const {
@@ -23,8 +24,8 @@ const Comments = ({ comments }) => {
             borderRadius="10px"
             bgcolor={mode === "dark" ? "#1D1D1D" : "#FFFFFF"}
             mb="40px"
-            p={"30px"}
             sx={{
+                p: { xs: "30px 7px", sm: "30px" },
                 overflow: "hidden",
                 position: "relative",
             }}
@@ -43,6 +44,9 @@ const Comments = ({ comments }) => {
                     <SignWithModal />
                 </Box>
             )}
+
+            {/* show comments */}
+            <ShowComments comments={comments} />
         </Grid>
     );
 };
