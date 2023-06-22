@@ -55,6 +55,13 @@ const GET_REPORT_OF_NEWS = gql`
             comment {
                 id
                 description
+                spoil
+                createdAt
+                disLikes
+                upLikes
+                registeredUsercomment {
+                    userName
+                }
             }
         }
     }
