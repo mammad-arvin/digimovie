@@ -7,7 +7,7 @@ const ShowComments = ({ comments }) => {
     return (
         <>
             {comments.map((item) => {
-                return <EveryComment item={item} />;
+                return <EveryComment key={item.id} item={item} />;
             })}
         </>
     );
