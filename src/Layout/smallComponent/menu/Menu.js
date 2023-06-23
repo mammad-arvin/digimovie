@@ -53,6 +53,7 @@ const Menu = () => {
                                 sx={{
                                     flexGrow: { xs: ".5", sm: "1", md: ".5" },
                                     display: { xs: "none", sm: "block" },
+                                    zIndex: "3",
                                 }}
                             >
                                 <MyMenuItems />
