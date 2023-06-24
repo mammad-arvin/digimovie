@@ -5,7 +5,7 @@ import NastedItem from "./NastedItem";
 
 import { Link } from "react-router-dom";
 // mui
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, Collapse } from "@mui/material";
 
 // icons
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -92,9 +92,9 @@ const MyMenuItems = () => {
                         </Box>
                     </BoxForItem>
                 </Link>
-                {showMovItem && (
+                <Collapse in={showMovItem}>
                     <NastedItem items={movieItem} itemImage={movieImageIcon} />
-                )}
+                </Collapse>
             </Grid>
             <Grid
                 item
@@ -116,9 +116,9 @@ const MyMenuItems = () => {
                         </Box>
                     </BoxForItem>
                 </Link>
-                {showSerItem && (
+                <Collapse in={showSerItem}>
                     <NastedItem items={seriesItem} itemImage={seriesItemIcon} />
-                )}
+                </Collapse>
             </Grid>
             <Grid
                 item
@@ -142,9 +142,9 @@ const MyMenuItems = () => {
                         </Box>
                     </BoxForItem>
                 </Link>
-                {showArtiItem && (
+                <Collapse in={showArtiItem}>
                     <NastedItem items={artistItem} itemImage={artistItemIcon} />
-                )}
+                </Collapse>
             </Grid>
             <Grid item>
                 <Link to="/contact">
