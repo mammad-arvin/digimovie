@@ -95,7 +95,6 @@ const NewsGallery = () => {
                                             {!error
                                                 ? item.title
                                                 : "Network Error"}
-                                            .
                                         </Typography>
                                     </Box>
                                 </Link>
