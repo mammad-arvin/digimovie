@@ -106,6 +106,25 @@ const GET_NEWS_SLUGS = gql`
     }
 `;
 
+// get data for Home Gallery
+const GET_HOME_GALLERY_DATA = gql`
+    query MyQuery {
+        movies {
+            slug
+            title
+            images {
+                url
+            }
+            htmlOfRate {
+                html
+            }
+            movieLinks {
+                qualityTitle
+            }
+        }
+    }
+`;
+
 export {
     GET_FILMS_DETAILS_FOR_SEARCH,
     GET_FOOTER_NEWS_GALLERY,
@@ -114,4 +133,5 @@ export {
     GET_DATA_OF_USER_FOR_LOGE_IN_WITH_EMAIL,
     GET_USER_INFO_FOR_LOGED_IN_USER,
     GET_NEWS_SLUGS,
+    GET_HOME_GALLERY_DATA,
 };
