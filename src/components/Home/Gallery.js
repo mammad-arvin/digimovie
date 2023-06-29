@@ -16,6 +16,10 @@ import { GET_HOME_GALLERY_DATA } from "../../graphql/queries";
 // icons
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import HdIcon from "@mui/icons-material/Hd";
+
+// image
+import Imdb from "./imdb.png";
 
 // style of image
 import styled from "styled-components";
@@ -23,6 +27,7 @@ const GalleryImage = styled.img`
     width: 100%;
     height: 470px;
     border-radius: 12px;
+    filter: brightness(70%);
     @media (max-width: 900px) {
         height: 445px;
     }
@@ -47,9 +52,21 @@ const arowStyle = {
     cursor: "pointer",
 };
 
+// rate style
+const RateStyle = styled(Box)`
+    text-align: center;
+    span:first-child {
+        color: #ffc107;
+        font: 700 24px lato;
+    }
+    span:last-child {
+        font: 300 15.2px lato;
+    }
+`;
+
 const Gallery = () => {
     // query
-    const { loading, data, error } = useQuery(GET_HOME_GALLERY_DATA);
+    const { loading, data } = useQuery(GET_HOME_GALLERY_DATA);
 
     return (
         <>
@@ -63,13 +80,14 @@ const Gallery = () => {
             >
                 <Grid
                     item
-                    xs={11.9}
+                    xs={12}
                     md={8}
                     display={"flex"}
                     justifyContent={"center"}
                     alignItems={"center"}
                     p="5px"
                     sx={{ direction: "ltr" }}
+                    position={"relative"}
                 >
                     {data && (
                         <Carousel
@@ -101,6 +119,75 @@ const Gallery = () => {
                                                 <GalleryImage
                                                     src={item.images[0].url}
                                                 />
+
+                                                {/* quality */}
+                                                <Box
+                                                    sx={{
+                                                        color: "#d47300",
+                                                        position: "absolute",
+                                                        top: "30px",
+                                                        ml: "30px",
+                                                    }}
+                                                >
+                                                    <Typography
+                                                        variant="p"
+                                                        display={"flex"}
+                                                        alignItems={"center"}
+                                                        sx={{
+                                                            font: "700 13.6px lato",
+                                                        }}
+                                                    >
+                                                        <HdIcon />
+                                                        {item.quality}
+                                                    </Typography>
+                                                </Box>
+
+                                                {/* titile */}
+                                                <Box
+                                                    sx={{
+                                                        color: "#fff",
+                                                        position: "absolute",
+                                                        bottom: "30px",
+                                                        ml: "30px",
+                                                    }}
+                                                >
+                                                    <Typography
+                                                        variant="p"
+                                                        sx={{
+                                                            font: "700 24px lato",
+                                                        }}
+                                                    >
+                                                        {item.title}
+                                                    </Typography>
+                                                </Box>
+
+                                                {/* IMDB rate */}
+                                                <Box
+                                                    sx={{
+                                                        color: "#fff",
+                                                        position: "absolute",
+                                                        bottom: "70px",
+                                                        ml: "30px",
+                                                    }}
+                                                >
+                                                    <RateStyle
+                                                        variant="div"
+                                                        dangerouslySetInnerHTML={{
+                                                            __html: item
+                                                                .htmlOfRate
+                                                                .text,
+                                                        }}
+                                                    ></RateStyle>
+                                                    <img
+                                                        src={Imdb}
+                                                        alt="imdb"
+                                                        style={{
+                                                            width: "63px",
+                                                            height: "28px",
+                                                            borderRadius: "7px",
+                                                        }}
+                                                    />
+                                                </Box>
                                             </Link>
                                         )
                                 )}
