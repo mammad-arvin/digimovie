@@ -68,6 +68,10 @@ const SignIn = ({ modal }) => {
                         "likedContent",
                         JSON.stringify(data.registeredUser.likedContent)
                     );
+                    localStorage.setItem(
+                        "favoriteMovies",
+                        data.registeredUser.favoriteMovies
+                    );
                     setAlert_succ(true);
                     setTimeout(() => window.location.reload(), 2200);
                 } else {
