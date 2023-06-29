@@ -74,6 +74,7 @@ const GET_DATA_OF_USER_FOR_LOGE_IN_WITH_USERNAME = gql`
             id
             psassword
             likedContent
+            favoriteMovies
         }
     }
 `;
@@ -84,6 +85,7 @@ const GET_DATA_OF_USER_FOR_LOGE_IN_WITH_EMAIL = gql`
             id
             psassword
             likedContent
+            favoriteMovies
         }
     }
 `;
