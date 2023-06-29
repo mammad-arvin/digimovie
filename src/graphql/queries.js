@@ -116,11 +116,9 @@ const GET_HOME_GALLERY_DATA = gql`
                 url
             }
             htmlOfRate {
-                html
+                text
             }
-            movieLinks {
-                qualityTitle
-            }
+            quality
         }
     }
 `;
