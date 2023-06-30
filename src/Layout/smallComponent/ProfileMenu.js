@@ -28,8 +28,7 @@ export default function ProfileMenuItem() {
 
     // exit Handler
     const exitHnadler = () => {
-        localStorage.removeItem("userId");
-        localStorage.removeItem("likedContent");
+        localStorage.clear();
         window.location.reload();
     };
 
