@@ -13,6 +13,9 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_HOME_GALLERY_DATA } from "../../graphql/queries";
 
+// components
+import Favorite from "../../shared/Favorite";
+
 // icons
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -112,83 +115,109 @@ const Gallery = () => {
                                 data.movies.map(
                                     (item, index) =>
                                         index < 7 && (
-                                            <Link
-                                                to={"movie/" + item.slug}
-                                                key={index}
-                                            >
-                                                <GalleryImage
-                                                    src={item.images[0].url}
-                                                />
-
-                                                {/* quality */}
-                                                <Box
-                                                    sx={{
-                                                        color: "#d47300",
-                                                        position: "absolute",
-                                                        top: "30px",
-                                                        ml: "30px",
-                                                    }}
+                                            <>
+                                                <Link
+                                                    to={"movie/" + item.slug}
+                                                    key={index}
                                                 >
-                                                    <Typography
-                                                        variant="p"
-                                                        display={"flex"}
-                                                        alignItems={"center"}
+                                                    <GalleryImage
+                                                        src={item.images[0].url}
+                                                    />
+
+                                                    {/* quality */}
+                                                    <Box
                                                         sx={{
-                                                            font: "700 13.6px lato",
+                                                            color: "#d47300",
+                                                            position:
+                                                                "absolute",
+                                                            top: "30px",
+                                                            ml: "30px",
                                                         }}
                                                     >
-                                                        <HdIcon />
-                                                        {item.quality}
-                                                    </Typography>
-                                                </Box>
+                                                        <Typography
+                                                            variant="p"
+                                                            display={"flex"}
+                                                            alignItems={
+                                                                "center"
+                                                            }
+                                                            sx={{
+                                                                font: "700 13.6px lato",
+                                                            }}
+                                                        >
+                                                            <HdIcon />
+                                                            {item.quality}
+                                                        </Typography>
+                                                    </Box>
 
-                                                {/* titile */}
-                                                <Box
-                                                    sx={{
-                                                        color: "#fff",
-                                                        position: "absolute",
-                                                        bottom: "30px",
-                                                        ml: "30px",
-                                                    }}
-                                                >
-                                                    <Typography
-                                                        variant="p"
+                                                    {/* titile */}
+                                                    <Box
                                                         sx={{
-                                                            font: "700 24px lato",
+                                                            color: "#fff",
+                                                            position:
+                                                                "absolute",
+                                                            bottom: "30px",
+                                                            ml: "30px",
                                                         }}
                                                     >
-                                                        {item.title}
-                                                    </Typography>
-                                                </Box>
+                                                        <Typography
+                                                            variant="p"
+                                                            sx={{
+                                                                font: "700 24px lato",
+                                                            }}
+                                                        >
+                                                            {item.title}
+                                                        </Typography>
+                                                    </Box>
 
-                                                {/* IMDB rate */}
+                                                    {/* IMDB rate */}
+                                                    <Box
+                                                        sx={{
+                                                            color: "#fff",
+                                                            position:
+                                                                "absolute",
+                                                            bottom: "70px",
+                                                            ml: "30px",
+                                                        }}
+                                                    >
+                                                        <RateStyle
+                                                            variant="div"
+                                                            dangerouslySetInnerHTML={{
+                                                                __html: item
+                                                                    .htmlOfRate
+                                                                    .text,
+                                                            }}
+                                                        ></RateStyle>
+                                                        <img
+                                                            src={Imdb}
+                                                            alt="imdb"
+                                                            style={{
+                                                                width: "63px",
+                                                                height: "28px",
+                                                                borderRadius:
+                                                                    "7px",
+                                                            }}
+                                                        />
+                                                    </Box>
+                                                </Link>
+
+                                                {/* sent to Favorite */}
                                                 <Box
                                                     sx={{
-                                                        color: "#fff",
+                                                        width: "8%",
+                                                        display: "flex",
+                                                        justifyContent:
+                                                            "flex-end",
                                                         position: "absolute",
-                                                        bottom: "70px",
-                                                        ml: "30px",
+                                                        bottom: "80px",
+                                                        cursor: "pointer",
                                                     }}
                                                 >
-                                                    <RateStyle
-                                                        variant="div"
-                                                        dangerouslySetInnerHTML={{
-                                                            __html: item
-                                                                .htmlOfRate
-                                                                .text,
-                                                        }}
-                                                    ></RateStyle>
-                                                    <img
-                                                        src={Imdb}
-                                                        alt="imdb"
-                                                        style={{
-                                                            width: "63px",
-                                                            height: "28px",
-                                                            borderRadius: "7px",
-                                                        }}
+                                                    <Favorite
+                                                        slug={item.slug}
+                                                        gallery={true}
                                                     />
                                                 </Box>
-                                            </Link>
+                                            </>
                                         )
                                 )}
                         </Carousel>
