@@ -70,7 +70,7 @@ const SignIn = ({ modal }) => {
                     );
                     localStorage.setItem(
                         "favoriteMovies",
-                        data.registeredUser.favoriteMovies
+                        JSON.stringify(data.registeredUser.favoriteMovies)
                     );
                     setAlert_succ(true);
                     setTimeout(() => window.location.reload(), 2200);
