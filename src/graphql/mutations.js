@@ -60,6 +60,7 @@ const CREATE_USER = gql`
         publishRegisteredUser(where: { userName: $userName }) {
             id
             likedContent
+            favoriteMovies
         }
     }
 `;
@@ -85,10 +86,26 @@ const CREATE_COMMENT_IN_NEWS = gql`
     }
 `;
 
+// send and publish user Favorite Movies
+const SEND_USER_FAVORITE_MOVIES = gql`
+    mutation MyMutation($favoriteMovies: Json!, $userId: ID!) {
+        updateRegisteredUser(
+            data: { favoriteMovies: $favoriteMovies }
+            where: { id: $userId }
+        ) {
+            id
+        }
+        publishRegisteredUser(where: { id: $userId }) {
+            id
+        }
+    }
+`;
+
 export {
     SEND_PAGE_VIEWS,
     iNCREASE_AND_DECREASE_LIKS,
     SEND_USER_LIKED_CONTENT,
     CREATE_USER,
     CREATE_COMMENT_IN_NEWS,
+    SEND_USER_FAVORITE_MOVIES,
 };
