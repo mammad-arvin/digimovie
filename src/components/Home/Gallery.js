@@ -38,7 +38,7 @@ const GalleryImage = styled.img`
         height: 305px;
     }
     @media (max-width: 520px) {
-        height: 205px;
+        height: 235px;
     }
 `;
 
@@ -130,8 +130,14 @@ const Gallery = () => {
                                                             color: "#d47300",
                                                             position:
                                                                 "absolute",
-                                                            top: "30px",
-                                                            ml: "30px",
+                                                            top: {
+                                                                xs: "10px",
+                                                                sm: "30px",
+                                                            },
+                                                            ml: {
+                                                                xs: "10px",
+                                                                sm: "30px",
+                                                            },
                                                         }}
                                                     >
                                                         <Typography
@@ -155,14 +161,23 @@ const Gallery = () => {
                                                             color: "#fff",
                                                             position:
                                                                 "absolute",
-                                                            bottom: "30px",
-                                                            ml: "30px",
+                                                            bottom: {
+                                                                xs: "10px",
+                                                                sm: "30px",
+                                                            },
+                                                            ml: {
+                                                                xs: "10px",
+                                                                sm: "30px",
+                                                            },
                                                         }}
                                                     >
                                                         <Typography
                                                             variant="p"
                                                             sx={{
-                                                                font: "700 24px lato",
+                                                                font: {
+                                                                    xs: "700 15px lato",
+                                                                    sm: "700 24px lato",
+                                                                },
                                                             }}
                                                         >
                                                             {item.title}
@@ -175,8 +190,14 @@ const Gallery = () => {
                                                             color: "#fff",
                                                             position:
                                                                 "absolute",
-                                                            bottom: "70px",
-                                                            ml: "30px",
+                                                            bottom: {
+                                                                xs: "30px",
+                                                                sm: "70px",
+                                                            },
+                                                            ml: {
+                                                                xs: "10px",
+                                                                sm: "30px",
+                                                            },
                                                         }}
                                                     >
                                                         <RateStyle
@@ -208,7 +229,10 @@ const Gallery = () => {
                                                         justifyContent:
                                                             "flex-end",
                                                         position: "absolute",
-                                                        bottom: "80px",
+                                                        bottom: {
+                                                            xs: "40px",
+                                                            sm: "80px",
+                                                        },
                                                         cursor: "pointer",
                                                     }}
                                                 >
