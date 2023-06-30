@@ -117,7 +117,7 @@ const Gallery = () => {
                                         index < 7 && (
                                             <>
                                                 <Link
-                                                    to={"movie/" + item.slug}
+                                                    to={"movies/" + item.slug}
                                                     key={index}
                                                 >
                                                     <GalleryImage
