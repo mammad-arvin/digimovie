@@ -115,10 +115,9 @@ const Gallery = () => {
                                 data.movies.map(
                                     (item, index) =>
                                         index < 7 && (
-                                            <>
+                                            <React.Fragment key={index}>
                                                 <Link
                                                     to={"movies/" + item.slug}
-                                                    key={index}
                                                 >
                                                     <GalleryImage
                                                         src={item.images[0].url}
@@ -224,7 +223,7 @@ const Gallery = () => {
                                                 {/* sent to Favorite */}
                                                 <Box
                                                     sx={{
-                                                        width: "8%",
+                                                        width: "6.4%",
                                                         display: "flex",
                                                         justifyContent:
                                                             "flex-end",
@@ -241,7 +240,7 @@ const Gallery = () => {
                                                         gallery={true}
                                                     />
                                                 </Box>
-                                            </>
+                                            </React.Fragment>
                                         )
                                 )}
                         </Carousel>
