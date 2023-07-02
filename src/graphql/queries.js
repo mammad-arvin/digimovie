@@ -125,6 +125,55 @@ const GET_HOME_GALLERY_DATA = gql`
     }
 `;
 
+// Get data of movie
+const GET_MOVIE_DATA = gql`
+    query MyQuery($slug: String!) {
+        movie(where: { slug: $slug }) {
+            id
+            slug
+            title
+            littleDescription
+            trilerUrl
+            quality
+            year
+            ages
+            ccBooleans
+            duration
+            giftCounter
+            description {
+                html
+            }
+            htmlOfRate {
+                text
+            }
+            images {
+                url
+            }
+            movieComments {
+                id
+                createdAt
+                description
+                disLikes
+                spoil
+                upLikes
+                registeredUsercomment {
+                    userName
+                }
+            }
+            movieLinks {
+                qualityTitle
+                render
+                size
+                link
+                encoder
+            }
+            rate {
+                rate
+            }
+        }
+    }
+`;
+
 export {
     GET_FILMS_DETAILS_FOR_SEARCH,
     GET_FOOTER_NEWS_GALLERY,
@@ -134,4 +183,5 @@ export {
     GET_USER_INFO_FOR_LOGED_IN_USER,
     GET_NEWS_SLUGS,
     GET_HOME_GALLERY_DATA,
+    GET_MOVIE_DATA,
 };
