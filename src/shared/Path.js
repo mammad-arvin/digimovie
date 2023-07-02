@@ -1,7 +1,7 @@
 import React from "react";
 
 // mui
-import {Typography, Grid } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
 // icon
@@ -15,8 +15,11 @@ const Path = ({ category, title, slug }) => {
     } = useTheme();
 
     return (
-        <Grid container xs={12} lg={10.8}>
+        <Grid container display={"flex"} justifyContent={"center"}>
             <Grid
+                item
+                xs={12}
+                lg={10.8}
                 height="60px"
                 display="flex"
                 alignItems="center"
@@ -24,8 +27,8 @@ const Path = ({ category, title, slug }) => {
                 gap="10px"
                 zIndex={1}
                 sx={{
-                    fontSize:{xs:"10px", sm:"13.6px" }
-                }}  
+                    fontSize: { xs: "10px", sm: "13.6px" },
+                }}
             >
                 <FmdGoodIcon
                     fontSize="small"
