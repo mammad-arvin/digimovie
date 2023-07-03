@@ -56,7 +56,7 @@ const arowStyle = {
 };
 
 // rate style
-const RateStyle = styled(Box)`
+export const RateStyle = styled(Box)`
     text-align: center;
     span:first-child {
         color: #ffc107;
