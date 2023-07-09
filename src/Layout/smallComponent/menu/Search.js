@@ -77,7 +77,9 @@ const Search = () => {
         <>
             <Autocomplete
                 id="asynchronous-demo"
-                sx={{ width: { xs: "95%", sm: "100%", lg: "330px" , zIndex:"2" } }}
+                sx={{
+                    width: { xs: "95%", sm: "100%", lg: "330px", zIndex: "2" },
+                }}
                 open={open}
                 onOpen={() => {
                     setOpen(true);
@@ -175,17 +177,29 @@ const Search = () => {
                                                         <React.Fragment
                                                             key={id}
                                                         >
-                                                            <Link to={`/movie/${slug}`}>
+                                                            <Link
+                                                                to={`/movies/${slug}`}
+                                                            >
                                                                 <ListItem
                                                                     sx={{
                                                                         height: "93.18px",
-                                                                        transition:".3s",
-                                                                        ":hover":{
-                                                                            opacity:".8",
-                                                                            transform:"translateY(-5px)",
-                                                                            transition:".3s"
-                                                                        }
+                                                                        transition:
+                                                                            ".3s",
+                                                                        ":hover":
+                                                                            {
+                                                                                opacity:
+                                                                                    ".8",
+                                                                                transform:
+                                                                                    "translateY(-5px)",
+                                                                                transition:
+                                                                                    ".3s",
+                                                                            },
                                                                     }}
+                                                                    onClick={() =>
+                                                                        setOpen(
+                                                                            false
+                                                                        )
+                                                                    }
                                                                 >
                                                                     <Box
                                                                         sx={{
