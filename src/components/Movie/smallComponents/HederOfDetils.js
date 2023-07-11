@@ -77,7 +77,7 @@ const HederOfDetils = ({ data }) => {
                         <Stack spacing={0.8}>
                             <RateStyle
                                 sx={{
-                                    "span:first-child": {
+                                    "span:first-of-type": {
                                         color: "#66CC33",
                                     },
                                 }}
