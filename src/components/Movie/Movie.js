@@ -14,6 +14,11 @@ import { Link, useParams } from "react-router-dom";
 // components
 import Path from "../../shared/Path";
 import ShowTrailer from "./smallComponents/ShowTrailer";
+import Details from "./smallComponents/Details";
+import LinerLoading from "../../shared/LinerLoading";
+
+// helper functions
+import { titleChanger } from "../../helpers/helperFunctions";
 
 // icons
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
@@ -71,14 +76,19 @@ const Movie = () => {
         var { title, slug, images, trilerUrl } = data.movie;
     }
 
+    // title changer
+    titleChanger(`دانلود فیلم ${title}`);
+
     return (
         <>
             {/* path */}
-            <Path
-                category={{ t: "دانلود فیلم", l: "/movies" }}
-                title={"دانلود فیلم" + " " + title}
-                slug={slug}
-            />
+            {data && (
+                <Path
+                    category={{ t: "دانلود فیلم", l: "/movies" }}
+                    title={"دانلود فیلم" + " " + title}
+                    slug={slug}
+                />
+            )}
 
             {/* movie details */}
             {data && (
@@ -88,7 +98,7 @@ const Movie = () => {
                     justifyContent={"center"}
                     zIndex={1}
                     width={"105%"}
-                    height={"800px"}
+                    height={{ xs: "1260px", md: "800px" }}
                     sx={{
                         background: `url(${images[0].url})`,
                         backgroundPosition: "center",
@@ -118,7 +128,6 @@ const Movie = () => {
                                 display={"flex"}
                                 justifyContent={"center"}
                                 mt={"30px"}
-                                // bgcolor={"blue"}
                             >
                                 <Grid container>
                                     {/* land Image and trailer */}
@@ -227,12 +236,11 @@ const Movie = () => {
                                     <Grid
                                         item
                                         xs={12}
-                                        md={8.2}
+                                        md={8.4}
                                         width={"100%"}
                                         height={"300px"}
-                                        bgcolor={"gray"}
                                     >
-                                        tyjufjfghjfgjfghj
+                                        <Details data={data.movie} />
                                     </Grid>
                                 </Grid>
                             </Grid>
@@ -240,6 +248,7 @@ const Movie = () => {
                     </Box>
                 </Box>
             )}
+            {loading && <LinerLoading />}
         </>
     );
 };
