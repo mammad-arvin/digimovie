@@ -161,9 +161,14 @@ const Report = ({ otherSlug }) => {
 
                 {/* video player */}
                 {videoLink && !otherSlug && (
-                    <Box variant="div" display="flex" justifyContent="center">
+                    <Box
+                        variant="div"
+                        width="100%"
+                        display="flex"
+                        justifyContent="center"
+                    >
                         <video
-                            width="98%"
+                            width="100%"
                             style={{
                                 borderBottomRightRadius: "20px",
                                 borderBottomLeftRadius: "20px",
