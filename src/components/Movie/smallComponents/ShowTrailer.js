@@ -46,9 +46,14 @@ const ShowTrailer = ({ link }) => {
             >
                 <Box
                     bgcolor={mode === "dark" ? "#1D1D1D" : "#cccccc"}
-                    sx={style}
+                    sx={{ ...style, width: { xs: "90%", md: "70%" } }}
                 >
-                    <video src={link} controls style={{ borderRadius: "15px" }}>
+                    <video
+                        src={link}
+                        controls
+                        width={"100%"}
+                        style={{ borderRadius: "15px" }}
+                    >
                         اسکریپت مرورگر را فعال کنید
                     </video>
                 </Box>
