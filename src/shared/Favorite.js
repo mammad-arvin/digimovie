@@ -5,6 +5,7 @@ import { IconButton } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useTheme } from "@emotion/react";
 
 // icons
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -21,6 +22,10 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const Favorite = ({ slug, gallery }) => {
+    const {
+        palette: { text },
+    } = useTheme();
+
     // user Registred?
     const userId = localStorage.getItem("userId");
 
@@ -100,19 +105,14 @@ const Favorite = ({ slug, gallery }) => {
                         border: "1px solid #CCCCCC",
                         borderRadius: "50%",
                         position: "relative",
+                        color: { text },
                     }}
                     onClick={() => addHandler()}
                 >
                     {loading ? (
-                        <CircularProgress
-                            size={"1rem"}
-                            sx={{ color: "#FFF" }}
-                        />
+                        <CircularProgress size={"1rem"} />
                     ) : (
-                        <FavoriteBorderIcon
-                            sx={{ fontSize: "17px" }}
-                            color="#FFF"
-                        />
+                        <FavoriteBorderIcon sx={{ fontSize: "17px" }} />
                     )}
                     <AddCircleRoundedIcon
                         sx={{
