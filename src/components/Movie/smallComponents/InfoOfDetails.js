@@ -29,7 +29,7 @@ import MicNoneOutlinedIcon from "@mui/icons-material/MicNoneOutlined";
 import styled from "styled-components";
 const MovieInfoBox = styled(Box)`
     width: 70px;
-    height: 100%;
+    height: 92%;
     display: flex;
     flex-direction: column;
     justify-content: center;
