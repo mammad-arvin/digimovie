@@ -102,6 +102,51 @@ const SEND_USER_FAVORITE_MOVIES = gql`
     }
 `;
 
+// update ratedContent of User
+const UPDATE_RATEDCONTENT_OF_USER = gql`
+    mutation MyMutation($ratedContent: Json!, $userId: ID!) {
+        updateRegisteredUser(
+            data: { ratedContent: $ratedContent }
+            where: { id: $userId }
+        ) {
+            id
+        }
+        publishRegisteredUser(where: { id: $userId }) {
+            id
+        }
+    }
+`;
+
+// update rate of movie
+const UPDATE_RATE_OF_MOVIE = gql`
+    mutation MyMutation(
+        $upCounter: Int!
+        $result: Float!
+        $slug: String!
+        $id: ID!
+    ) {
+        updateMovie(
+            where: { slug: $slug }
+            data: {
+                rate: {
+                    update: {
+                        where: { id: $id }
+                        data: { countOfRated: $upCounter, rate: $result }
+                    }
+                }
+            }
+        ) {
+            id
+        }
+        publishMovie(where: { slug: $slug }) {
+            id
+        }
+        publishRate(where: { id: $id }) {
+            id
+        }
+    }
+`;
+
 export {
     SEND_PAGE_VIEWS,
     iNCREASE_AND_DECREASE_LIKS,
@@ -109,4 +154,6 @@ export {
     CREATE_USER,
     CREATE_COMMENT_IN_NEWS,
     SEND_USER_FAVORITE_MOVIES,
+    UPDATE_RATEDCONTENT_OF_USER,
+    UPDATE_RATE_OF_MOVIE,
 };
