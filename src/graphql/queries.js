@@ -193,6 +193,7 @@ const GET_MOVIE_DATA = gql`
             rate {
                 rate
                 countOfRated
+                id
             }
         }
     }
