@@ -3,12 +3,13 @@ import React from "react";
 // component
 import HederOfDetils from "./HederOfDetils";
 import InfoOfDetails from "./InfoOfDetails";
+import MovieRate from "./MovieRate";
 
 // MUI
 import { Grid, Typography } from "@mui/material";
 
 const Details = ({ data }) => {
-    const { littleDescription } = data;
+    const { littleDescription, rate, slug } = data;
 
     return (
         <>
@@ -27,6 +28,11 @@ const Details = ({ data }) => {
                         {littleDescription}
                     </Typography>
                 </Grid>
+            </Grid>
+
+            {/* our users rate */}
+            <Grid container>
+                <MovieRate rateData={rate} slug={slug} />
             </Grid>
         </>
     );
