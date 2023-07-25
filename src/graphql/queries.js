@@ -135,6 +135,7 @@ const GET_MOVIE_DATA = gql`
             littleDescription
             trilerUrl
             quality
+            authors
             year
             ages
             ccBooleans
@@ -146,8 +147,27 @@ const GET_MOVIE_DATA = gql`
             htmlOfRate {
                 text
             }
+            imdbVotesCount
+            imdbLink
             images {
                 url
+            }
+            manyRerence {
+                ... on BestMenActors {
+                    name
+                }
+                ... on BestWomenActors {
+                    name
+                }
+                ... on Country {
+                    country
+                }
+                ... on Director {
+                    director
+                }
+                ... on Genres {
+                    genre
+                }
             }
             movieComments {
                 id
@@ -166,9 +186,11 @@ const GET_MOVIE_DATA = gql`
                 size
                 link
                 encoder
+                isDoble
             }
             rate {
                 rate
+                countOfRated
             }
         }
     }
