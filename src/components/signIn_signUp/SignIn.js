@@ -72,6 +72,10 @@ const SignIn = ({ modal }) => {
                         "favoriteMovies",
                         JSON.stringify(data.registeredUser.favoriteMovies)
                     );
+                    localStorage.setItem(
+                        "ratedContent",
+                        JSON.stringify(data.registeredUser.ratedContent)
+                    );
                     setAlert_succ(true);
                     setTimeout(() => window.location.reload(), 2200);
                 } else {

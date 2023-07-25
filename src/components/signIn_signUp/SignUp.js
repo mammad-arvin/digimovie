@@ -106,6 +106,14 @@ const SignUp = ({ modal }) => {
                 "likedContent",
                 JSON.stringify(data.publishRegisteredUser.likedContent)
             );
+            localStorage.setItem(
+                "favoriteMovies",
+                JSON.stringify(data.publishRegisteredUser.favoriteMovies)
+            );
+            localStorage.setItem(
+                "ratedContent",
+                JSON.stringify(data.publishRegisteredUser.ratedContent)
+            );
             setAlert_succ(true);
             setTimeout(() => window.location.reload(), 2800);
         } else if (error) {
