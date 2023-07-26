@@ -228,9 +228,9 @@ const Search = () => {
                                                                                 mt: "7px",
                                                                             }}
                                                                         >
-                                                                            {
-                                                                                rate
-                                                                            }
+                                                                            {rate.toFixed(
+                                                                                1
+                                                                            )}
                                                                         </Typography>
                                                                     </Box>
                                                                     <ListItemAvatar>
