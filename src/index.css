@@ -43,10 +43,10 @@ a {
 }
 
 /* details link style */
-.details a {
+:is(.details, .movie_descrioption) a {
     color: #ff6608;
 }
-.details h2 a {
+:is(.details, .movie_descrioption) h2 a {
     color: inherit;
 }
 .details h2 {
@@ -58,8 +58,16 @@ a {
 }
 
 /* time ago styles */
-.timeAgo{
+.timeAgo {
     direction: rtl;
+}
+:is(.movie_descrioption) h3,
+p {
+    font-size: 14.4px;
+    line-height: 23px;
+}
+.movie_descrioption h3 {
+    color: red;
 }
 
 body {
