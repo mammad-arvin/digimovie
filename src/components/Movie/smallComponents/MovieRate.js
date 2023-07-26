@@ -149,6 +149,7 @@ const MovieRate = ({ rateData, slug }) => {
                 open={alert_succ}
                 autoHideDuration={2000}
                 onClose={() => setAlert_succ(false)}
+                sx={{ position:'fixed', top:'-450px'}}
             >
                 <Alert severity="success">امتیاز شما ثبت شد.</Alert>
             </Snackbar>
@@ -157,6 +158,7 @@ const MovieRate = ({ rateData, slug }) => {
                 open={alert_war}
                 autoHideDuration={2000}
                 onClose={() => setAlert_war(false)}
+                sx={{ position:'fixed', top:'-450px'}}
             >
                 <Alert severity="warning">
                     قبلا امتیاز داده اید. امتیاز ثبت نشد.
@@ -167,6 +169,7 @@ const MovieRate = ({ rateData, slug }) => {
                 open={alert_error}
                 autoHideDuration={2000}
                 onClose={() => setAlert_error(false)}
+                sx={{ position:'fixed', top:'-450px'}}
             >
                 <Alert severity="error">
                     ابتدا باید وارد حساب کاربریتان شوید!
