@@ -85,7 +85,7 @@ const InfoOfDetails = ({ data }) => {
         ages,
         ccBooleans,
         giftCounter,
-        movieLinks,
+        movieLinkFa,
     } = data;
 
     return (
@@ -127,22 +127,19 @@ const InfoOfDetails = ({ data }) => {
                     </Tooltip>
                 )}
 
-                {movieLinks.map(
-                    (item) =>
-                        item.isDoble && (
-                            <Tooltip
-                                title="همراه با نسخه دوبله شده"
-                                placement="right"
-                                arrow
-                            >
-                                <EveryInfo
-                                    color="#2196F3"
-                                    shadows="0px 0px 17px 4px rgba(33, 150, 243 , 0.4)"
-                                >
-                                    <MicNoneOutlinedIcon sx={everyChildStyle} />
-                                </EveryInfo>
-                            </Tooltip>
-                        )
+                {movieLinkFa && (
+                    <Tooltip
+                        title="همراه با نسخه دوبله شده"
+                        placement="right"
+                        arrow
+                    >
+                        <EveryInfo
+                            color="#2196F3"
+                            shadows="0px 0px 17px 4px rgba(33, 150, 243 , 0.4)"
+                        >
+                            <MicNoneOutlinedIcon sx={everyChildStyle} />
+                        </EveryInfo>
+                    </Tooltip>
                 )}
 
                 {ccBooleans && (
