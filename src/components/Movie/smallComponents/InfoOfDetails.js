@@ -112,7 +112,7 @@ const InfoOfDetails = ({ data }) => {
                     },
                 }}
             >
-                {giftCounter && (
+                {giftCounter > 0 && (
                     <Tooltip
                         title={"برنده" + ` ${giftCounter} ` + "جایزه"}
                         placement="right"
@@ -127,7 +127,7 @@ const InfoOfDetails = ({ data }) => {
                     </Tooltip>
                 )}
 
-                {movieLinkFa && (
+                {movieLinkFa.length > 0 && (
                     <Tooltip
                         title="همراه با نسخه دوبله شده"
                         placement="right"
