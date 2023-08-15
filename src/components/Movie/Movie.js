@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import Path from "../../shared/Path";
 import Details from "./smallComponents/Details";
 import LinerLoading from "../../shared/LinerLoading";
+import DownloadLinks from "./smallComponents/DownloadLinks";
 
 // helper functions
 import { titleChanger } from "../../helpers/helperFunctions";
@@ -44,6 +45,9 @@ const Movie = () => {
 
             {/* movie details */}
             {data && <Details data={data.movie} />}
+
+            {/* download links */}
+            {data && <DownloadLinks data={data.movie} />}
 
             {/* loading */}
             {loading && <LinerLoading />}
