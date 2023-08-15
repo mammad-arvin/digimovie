@@ -182,13 +182,19 @@ const GET_MOVIE_DATA = gql`
                     userName
                 }
             }
-            movieLinks {
+            movieLinksEn {
                 qualityTitle
                 render
                 size
                 link
                 encoder
-                isDoble
+            }
+            movieLinkFa {
+                qualityTitle
+                render
+                size
+                link
+                encoder
             }
             rate {
                 rate
