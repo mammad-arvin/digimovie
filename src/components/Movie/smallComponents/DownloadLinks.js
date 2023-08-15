@@ -22,7 +22,6 @@ const extendStyle = {
     borderBottomRightRadius: "3px",
     borderBottomLeftRadius: "3px",
     borderRight: "3px solid #EB8307",
-    "&:hover": { backgroundColor: "#1D1D1D" },
     position: "relative",
 };
 
@@ -65,6 +64,10 @@ const DownloadLinks = ({ data }) => {
                         ...extendStyle,
                         border: "none",
                         background: mode === "dark" ? "#1D1D1D" : "#FFFFFF",
+                        "&:hover": {
+                            backgroundColor:
+                                mode === "dark" ? "#1D1D1D" : "#FFFFFF",
+                        },
                     }}
                     onClick={() =>
                         text === "نسخه دوبله فارسی (دوزبانه)"
@@ -182,7 +185,11 @@ const DownloadLinks = ({ data }) => {
                                             >
                                                 <Box
                                                     sx={linkDetailsBtnStyle}
-                                                    bgcolor="#292929"
+                                                    bgcolor={
+                                                        mode === "dark"
+                                                            ? "#292929"
+                                                            : "#F9F9F9"
+                                                    }
                                                 >
                                                     <DownloadIcon color="warning" />
                                                     <Typography variant="p">
@@ -240,6 +247,10 @@ const DownloadLinks = ({ data }) => {
                                 ...extendStyle,
                                 background:
                                     mode === "dark" ? "#1D1D1D" : "#FFFFFF",
+                                "&:hover": {
+                                    backgroundColor:
+                                        mode === "dark" ? "#1D1D1D" : "#FFFFFF",
+                                },
                             }}
                             onClick={() => setOpen(!open)}
                         >
@@ -276,6 +287,24 @@ const DownloadLinks = ({ data }) => {
                                         "نسخه زیرنویس چسبیده فارسی"
                                     )}
                             </List>
+                            <Box
+                                width="98%"
+                                height="66px"
+                                display="flex"
+                                justifyContent="center"
+                                alignItems="center"
+                                m="16px auto"
+                                mt="0px"
+                                borderRadius="8px"
+                                bgcolor="#FF9800"
+                            >
+                                <Typography>
+                                    "دانلود و تماشای آنلاین تنها با IP ایران
+                                    امکانپذیر هست، لطفا v.p.n خود را خاموش
+                                    نمایید ، همچنین با نرم افزار IDM در رایانه و
+                                    ADM در موبایل اقدام به دانلود نمائید."
+                                </Typography>
+                            </Box>
                         </Collapse>
                     </List>
                 </Box>
