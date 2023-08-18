@@ -288,8 +288,9 @@ const DownloadLinks = ({ data }) => {
                                     )}
                             </List>
                             <Box
-                                width="98%"
-                                height="66px"
+                                width="96%"
+                                height="auto"
+                                p="15px"
                                 display="flex"
                                 justifyContent="center"
                                 alignItems="center"
@@ -298,7 +299,7 @@ const DownloadLinks = ({ data }) => {
                                 borderRadius="8px"
                                 bgcolor="#FF9800"
                             >
-                                <Typography>
+                                <Typography variant="p">
                                     "دانلود و تماشای آنلاین تنها با IP ایران
                                     امکانپذیر هست، لطفا v.p.n خود را خاموش
                                     نمایید ، همچنین با نرم افزار IDM در رایانه و
