@@ -33,7 +33,7 @@ const joinStars = (manyRefrence) => {
             refrence.__typename === "BestWomenActors" ||
             (refrence.__typename === "BestMenActors" && refrence.name)
     );
-    const star = stars.map((item) => item.name);
+    const star = stars.map((item) => item.name).splice(0, 3);
     return star.join(" , ");
 };
 
