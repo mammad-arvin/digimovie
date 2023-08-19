@@ -15,6 +15,7 @@ import DownloadLinks from "./smallComponents/DownloadLinks";
 
 // helper functions
 import { titleChanger } from "../../helpers/helperFunctions";
+import MovieActors from "./smallComponents/MovieActors";
 
 const Movie = () => {
     const { LocalSlug } = useParams();
@@ -48,6 +49,9 @@ const Movie = () => {
 
             {/* download links */}
             {data && <DownloadLinks data={data.movie} />}
+
+            {/* Movie Actors */}
+            {data && <MovieActors data={data.movie.manyRerence} />}
 
             {/* loading */}
             {loading && <LinerLoading />}
