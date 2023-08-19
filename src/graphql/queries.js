@@ -157,9 +157,17 @@ const GET_MOVIE_DATA = gql`
             manyRerence {
                 ... on BestMenActors {
                     name
+                    image {
+                        url
+                    }
+                    slug
                 }
                 ... on BestWomenActors {
                     name
+                    image {
+                        url
+                    }
+                    slug
                 }
                 ... on Country {
                     country
