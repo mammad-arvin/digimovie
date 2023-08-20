@@ -46,6 +46,16 @@ const joinCountries = (manyRefrence) => {
     return country.join(" , ");
 };
 
+// minimize title of movie poster
+const miniMoviePoserTitle = (title) => {
+    if (title.length >= 20) {
+        const newTitle = title.split("").splice(0, 20);
+        return newTitle.join("") + "...";
+    } else {
+        return title;
+    }
+};
+
 // change title of any page to special title that page
 const titleChanger = (title) => {
     document.title = title;
@@ -58,4 +68,5 @@ export {
     joinDirector,
     joinStars,
     joinCountries,
+    miniMoviePoserTitle,
 };
