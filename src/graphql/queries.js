@@ -213,6 +213,21 @@ const GET_MOVIE_DATA = gql`
     }
 `;
 
+// query for get related video of any movie
+const GET_RELATED_VIDEO = gql`
+    query MyQuery($movieGenres: [String]) {
+        genress(where: { genre_in: $movieGenres }) {
+            movies {
+                title
+                slug
+                images {
+                    url
+                }
+            }
+        }
+    }
+`;
+
 export {
     GET_FILMS_DETAILS_FOR_SEARCH,
     GET_FOOTER_NEWS_GALLERY,
@@ -223,4 +238,5 @@ export {
     GET_NEWS_SLUGS,
     GET_HOME_GALLERY_DATA,
     GET_MOVIE_DATA,
+    GET_RELATED_VIDEO,
 };
