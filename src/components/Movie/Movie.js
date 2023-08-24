@@ -12,10 +12,11 @@ import Path from "../../shared/Path";
 import Details from "./smallComponents/Details";
 import LinerLoading from "../../shared/LinerLoading";
 import DownloadLinks from "./smallComponents/DownloadLinks";
+import MovieActors from "./smallComponents/MovieActors";
+import RelatedVideos from "./smallComponents/RelatedVideos";
 
 // helper functions
 import { titleChanger } from "../../helpers/helperFunctions";
-import MovieActors from "./smallComponents/MovieActors";
 
 const Movie = () => {
     const { LocalSlug } = useParams();
@@ -52,6 +53,14 @@ const Movie = () => {
 
             {/* Movie Actors */}
             {data && <MovieActors data={data.movie.manyRerence} />}
+
+            {/* related Video */}
+            {data && (
+                <RelatedVideos
+                    refrenceData={data.movie.manyRerence}
+                    movieSlug={slug}
+                />
+            )}
 
             {/* loading */}
             {loading && <LinerLoading />}
