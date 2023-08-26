@@ -79,7 +79,7 @@ const NastedList = ({ children, title }) => {
                             <List
                                 component="div"
                                 sx={{
-                                    margin: "10px 20px",
+                                    margin: "10px 5px",
                                     p: "10px",
                                     borderRadius: "5px",
                                     background:
