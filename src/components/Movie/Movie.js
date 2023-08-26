@@ -36,32 +36,30 @@ const Movie = () => {
 
     return (
         <>
-            {/* path */}
             {data && (
-                <Path
-                    category={{ t: "دانلود فیلم", l: "/movies" }}
-                    title={"دانلود فیلم" + " " + title}
-                    slug={slug}
-                />
+                <>
+                    {/* path */}
+                    <Path
+                        category={{ t: "دانلود فیلم", l: "/movies" }}
+                        title={"دانلود فیلم" + " " + title}
+                        slug={slug}
+                    />
+                    {/* movie details */}
+                    <Details data={data.movie} />
+
+                    {/* download links */}
+                    <DownloadLinks data={data.movie} />
+
+                    {/* Movie Actors */}
+                    <MovieActors data={data.movie.manyRerence} />
+
+                    {/* related Video */}
+                    <RelatedVideos
+                        refrenceData={data.movie.manyRerence}
+                        movieSlug={slug}
+                    />
+                </>
             )}
-
-            {/* movie details */}
-            {data && <Details data={data.movie} />}
-
-            {/* download links */}
-            {data && <DownloadLinks data={data.movie} />}
-
-            {/* Movie Actors */}
-            {data && <MovieActors data={data.movie.manyRerence} />}
-
-            {/* related Video */}
-            {data && (
-                <RelatedVideos
-                    refrenceData={data.movie.manyRerence}
-                    movieSlug={slug}
-                />
-            )}
-
             {/* loading */}
             {loading && <LinerLoading />}
         </>
