@@ -35,7 +35,7 @@ const Comments = ({ comments, nastedList }) => {
 
             {/* send comment */}
             {localStorage.getItem("userId") ? (
-                <SendComment />
+                <SendComment movie={nastedList} />
             ) : (
                 <Box position={"relative"}>
                     <Typography textAlign={"center"} m={2}>
