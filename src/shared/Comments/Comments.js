@@ -10,7 +10,7 @@ import SendComment from "./SendComment";
 import SignWithModal from "../../components/signIn_signUp/SignWithModal";
 import ShowComments from "./showComment/ShowComments";
 
-const Comments = ({ comments }) => {
+const Comments = ({ comments, nastedList }) => {
     const {
         palette: { text, mode },
     } = useTheme();
@@ -19,7 +19,7 @@ const Comments = ({ comments }) => {
         <Grid
             item
             xs={12}
-            md={10.8}
+            md={nastedList ? 12 : 10.8}
             color={text.primary}
             borderRadius="10px"
             bgcolor={mode === "dark" ? "#1D1D1D" : "#FFFFFF"}
