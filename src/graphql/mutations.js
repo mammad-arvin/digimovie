@@ -87,6 +87,26 @@ const CREATE_COMMENT_IN_NEWS = gql`
     }
 `;
 
+const CREATE_COMMENT_IN_MOVIE = gql`
+    mutation MyMutation(
+        $userId: ID
+        $slug: String!
+        $spoil: Boolean!
+        $comentText: String!
+    ) {
+        createComment(
+            data: {
+                description: $comentText
+                spoil: $spoil
+                registeredUsercomment: { connect: { id: $userId } }
+                movie: { connect: { slug: $slug } }
+            }
+        ) {
+            id
+        }
+    }
+`;
+
 // send and publish user Favorite Movies
 const SEND_USER_FAVORITE_MOVIES = gql`
     mutation MyMutation($favoriteMovies: Json!, $userId: ID!) {
@@ -153,6 +173,7 @@ export {
     SEND_USER_LIKED_CONTENT,
     CREATE_USER,
     CREATE_COMMENT_IN_NEWS,
+    CREATE_COMMENT_IN_MOVIE,
     SEND_USER_FAVORITE_MOVIES,
     UPDATE_RATEDCONTENT_OF_USER,
     UPDATE_RATE_OF_MOVIE,
