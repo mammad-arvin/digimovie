@@ -13,7 +13,12 @@ import SendIcon from "@mui/icons-material/Send";
 
 // mutation
 import { useMutation } from "@apollo/client";
-import { CREATE_COMMENT_IN_NEWS } from "../../graphql/mutations";
+import {
+    CREATE_COMMENT_IN_NEWS,
+    CREATE_COMMENT_IN_MOVIE,
+} from "../../graphql/mutations";
+
+// router dom
 import { useParams } from "react-router-dom";
 
 // for alert
@@ -21,7 +26,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-const SendComment = () => {
+const SendComment = ({ movie }) => {
     const {
         palette: { text, mode },
     } = useTheme();
@@ -33,18 +38,16 @@ const SendComment = () => {
     // mutation
     const { LocalSlug } = useParams();
     const userId = localStorage.getItem("userId");
+    const mutation = movie ? CREATE_COMMENT_IN_MOVIE : CREATE_COMMENT_IN_NEWS;
 
-    const [sendComment, { loading, data, error }] = useMutation(
-        CREATE_COMMENT_IN_NEWS,
-        {
-            variables: {
-                comentText,
-                spoil,
-                userId,
-                slug: LocalSlug,
-            },
-        }
-    );
+    const [sendComment, { loading, data, error }] = useMutation(mutation, {
+        variables: {
+            comentText,
+            spoil,
+            userId,
+            slug: LocalSlug,
+        },
+    });
 
     // alert
     const [alert_succ, setAlert_succ] = useState(false);
