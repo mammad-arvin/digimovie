@@ -1,10 +1,18 @@
 import React from "react";
 
 // Mui
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 // router dom
 import { Link } from "react-router-dom";
+
+// components
+import Path from "../../shared/Path";
+
+// GraphQl
+import { useQuery } from "@apollo/client";
+import { GET_MOVIE_POSTER_DATA } from "../../graphql/queries";
 
 // helper function
 import { miniMoviePoserTitle } from "../../helpers/helperFunctions";
@@ -102,7 +110,12 @@ export const moviePoster = (data) => {
                         height="268px"
                         style={{ borderRadius: "6px" }}
                     />
-                    <Typography variant="p" fontSize="16px" textAlign="center">
+                    <Typography
+                        variant="p"
+                        fontSize="16px"
+                        textAlign="center"
+                        sx={{ direction: "ltr" }}
+                    >
                         {miniMoviePoserTitle(data.title)}
                     </Typography>
                 </StackOfTopSvg>
@@ -112,7 +125,57 @@ export const moviePoster = (data) => {
 };
 
 const Movies = () => {
-    return <div></div>;
+    const {
+        palette: { text },
+    } = useTheme();
+
+    // query
+    const { data } = useQuery(GET_MOVIE_POSTER_DATA);
+
+    return (
+        data && (
+            <>
+                {/* path  */}
+                <Path category={{ t: "دانلود فیلم", l: "/movies" }} />
+
+                <Grid
+                    container
+                    width={{ xs: "105%", sm: "100%" }}
+                    color={text.primary}
+                    zIndex={1}
+                >
+                    {/* text */}
+                    <Box width="100%" display="flex" justifyContent="center">
+                        <Typography
+                            variant="h6"
+                            sx={{
+                                textAlign: "center",
+                                mb: "15px",
+                                borderBottom: "2px solid #EB8307",
+                            }}
+                        >
+                            دانلود فیلم
+                        </Typography>
+                    </Box>
+
+                    {/* movies poster */}
+                    <Grid item xs={12} md={11.5} lg={10.8} margin={"0 auto"}>
+                        <Box
+                            display="grid"
+                            gridTemplateColumns="repeat(auto-fit ,181px)"
+                            justifyContent="space-around"
+                            alignItems="center"
+                            rowGap="20px"
+                            pt="5px"
+                            sx={{ direction: "ltr" }}
+                        >
+                            {data.movies.map((item) => moviePoster(item))}
+                        </Box>
+                    </Grid>
+                </Grid>
+            </>
+        )
+    );
 };
 
 export default Movies;
