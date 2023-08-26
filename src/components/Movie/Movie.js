@@ -14,6 +14,8 @@ import LinerLoading from "../../shared/LinerLoading";
 import DownloadLinks from "./smallComponents/DownloadLinks";
 import MovieActors from "./smallComponents/MovieActors";
 import RelatedVideos from "./smallComponents/RelatedVideos";
+import NastedList from "../../shared/NastedList";
+import Comments from "../../shared/Comments/Comments";
 
 // helper functions
 import { titleChanger } from "../../helpers/helperFunctions";
@@ -58,6 +60,14 @@ const Movie = () => {
                         refrenceData={data.movie.manyRerence}
                         movieSlug={slug}
                     />
+
+                    {/* comments */}
+                    <NastedList title={"نظرات"}>
+                        <Comments
+                            comments={data.movie.movieComments}
+                            nastedList={true}
+                        />
+                    </NastedList>
                 </>
             )}
             {/* loading */}
