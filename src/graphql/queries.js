@@ -228,6 +228,19 @@ const GET_RELATED_VIDEO = gql`
     }
 `;
 
+// get data for movies component to show any movie poster
+const GET_MOVIE_POSTER_DATA = gql`
+    query MyQuery {
+        movies {
+            title
+            slug
+            images {
+                url
+            }
+        }
+    }
+`;
+
 export {
     GET_FILMS_DETAILS_FOR_SEARCH,
     GET_FOOTER_NEWS_GALLERY,
@@ -239,4 +252,5 @@ export {
     GET_HOME_GALLERY_DATA,
     GET_MOVIE_DATA,
     GET_RELATED_VIDEO,
+    GET_MOVIE_POSTER_DATA,
 };
