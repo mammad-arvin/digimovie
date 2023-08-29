@@ -13,6 +13,7 @@ import {
     Autocomplete,
     Box,
 } from "@mui/material";
+import { useTheme } from "@emotion/react";
 
 // queries
 import { GET_FILMS_DETAILS_FOR_SEARCH } from "../../../graphql/queries";
@@ -23,17 +24,20 @@ import SearchIcon from "@mui/icons-material/Search";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 
 // helper functions
-import { joinGenre } from "../../../helpers/helperFunctions";
-import { useTheme } from "@emotion/react";
-import { Translate } from "@mui/icons-material";
+import {
+    joinGenre,
+    miniMoviePoserTitle,
+} from "../../../helpers/helperFunctions";
 
+// search needed function
 function sleep(delay = 0) {
     return new Promise((resolve) => {
         setTimeout(resolve, delay);
     });
 }
+
 const Search = () => {
-    const { loading, data, error } = useQuery(GET_FILMS_DETAILS_FOR_SEARCH);
+    const { loading, data } = useQuery(GET_FILMS_DETAILS_FOR_SEARCH);
     const [open, setOpen] = React.useState(false);
     const [options, setOptions] = React.useState([]);
     const loadingState = open && options.length === 0;
@@ -140,7 +144,11 @@ const Search = () => {
                                     left: 0,
                                     borderRadius: "8px",
                                     maxHeight: "425px",
-                                    overflow: "hidden",
+                                    overflowX: "hidden",
+                                    overflowY: "scroll",
+                                    "::-webkit-scrollbar": {
+                                        width: "3px",
+                                    },
                                 }}
                             >
                                 {loadingState && (
@@ -258,9 +266,9 @@ const Search = () => {
                                                                                     "nowrap",
                                                                             }}
                                                                         >
-                                                                            {
+                                                                            {miniMoviePoserTitle(
                                                                                 title
-                                                                            }
+                                                                            )}
                                                                         </Typography>
                                                                         <Typography
                                                                             variant="subtitle2"
