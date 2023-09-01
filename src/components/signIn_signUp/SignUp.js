@@ -100,7 +100,6 @@ const SignUp = ({ modal }) => {
     // success ? so setItem |   error ? show Alert of error
     useEffect(() => {
         if (data) {
-            console.log(data);
             localStorage.setItem("userId", data.publishRegisteredUser.id);
             localStorage.setItem(
                 "likedContent",
