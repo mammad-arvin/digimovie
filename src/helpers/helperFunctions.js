@@ -61,6 +61,16 @@ const titleChanger = (title) => {
     document.title = title;
 };
 
+// minimize little description
+const miniLittleDecription = (descrip) => {
+    if (descrip.length >= 20) {
+        const newDescrip = descrip.split("").splice(0, 64);
+        return newDescrip.join("") + "...";
+    } else {
+        return descrip;
+    }
+};
+
 export {
     miniName,
     titleChanger,
@@ -69,4 +79,5 @@ export {
     joinStars,
     joinCountries,
     miniMoviePoserTitle,
+    miniLittleDecription,
 };
