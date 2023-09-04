@@ -241,6 +241,68 @@ const GET_MOVIE_POSTER_DATA = gql`
     }
 `;
 
+// get movies data for home suggestion
+const GET_MOVIES_DATA = gql`
+    query MyQuery {
+        movies {
+            id
+            slug
+            title
+            littleDescription
+            trilerUrl
+            quality
+            authors
+            year
+            ages
+            ccBooleans
+            duration
+            giftCounter
+            description {
+                html
+            }
+            htmlOfRate {
+                text
+            }
+            imdbVotesCount
+            imdbLink
+            images {
+                url
+            }
+            manyRerence {
+                ... on BestMenActors {
+                    name
+                    image {
+                        url
+                    }
+                    slug
+                }
+                ... on BestWomenActors {
+                    name
+                    image {
+                        url
+                    }
+                    slug
+                }
+                ... on Country {
+                    country
+                }
+                ... on Director {
+                    director
+                }
+                ... on Genres {
+                    genre
+                }
+            }
+            movieLinkFa {
+                id
+            }
+            rate {
+                rate
+            }
+        }
+    }
+`;
+
 export {
     GET_FILMS_DETAILS_FOR_SEARCH,
     GET_FOOTER_NEWS_GALLERY,
@@ -253,4 +315,5 @@ export {
     GET_MOVIE_DATA,
     GET_RELATED_VIDEO,
     GET_MOVIE_POSTER_DATA,
+    GET_MOVIES_DATA,
 };
