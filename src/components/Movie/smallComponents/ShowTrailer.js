@@ -19,7 +19,7 @@ const style = {
     boxShadow: 24,
 };
 
-const ShowTrailer = ({ link }) => {
+const ShowTrailer = ({ link, suggest }) => {
     const {
         palette: { mode },
     } = useTheme();
@@ -27,14 +27,17 @@ const ShowTrailer = ({ link }) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div style={{ textAlign: "center", position: "absolute" }}>
+        <div
+            style={{ textAlign: "center", position: "absolute", width: "100%" }}
+        >
             <Button
                 disableRipple
                 onClick={() => setOpen(true)}
                 sx={{
                     background: "none",
-                    height: "45px",
-                    width: "40px",
+                    height: !suggest ? "45px" : "60px",
+                    width: !suggest ? "40px" : "100%",
+                    zIndex: "3",
                     ":hover": { background: "none" },
                 }}
             ></Button>

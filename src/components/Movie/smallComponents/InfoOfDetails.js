@@ -66,7 +66,6 @@ const everyChildStyle = {
 const boxStyle = {
     width: "auto",
     display: "flex",
-    mb: "25px",
     fontSize: { xs: "11.3px", sm: "13.6px" },
 };
 
@@ -76,7 +75,7 @@ const iconStyle = {
     ml: "4px",
 };
 
-const InfoOfDetails = ({ data }) => {
+const InfoOfDetails = ({ data, suggest }) => {
     const {
         quality,
         manyRerence,
@@ -92,8 +91,8 @@ const InfoOfDetails = ({ data }) => {
         <Grid
             item
             xs={12}
-            mt={3}
-            height="243px"
+            mt={!suggest ? 3 : -2.5}
+            height={!suggest ? "243px" : "218px"}
             p={"0 10px"}
             sx={{
                 display: "grid",
@@ -161,11 +160,23 @@ const InfoOfDetails = ({ data }) => {
             </MovieInfoBox>
 
             {/* movie info */}
-            <Box>
+            <Box
+                display="flex"
+                flexDirection="column"
+                gap={!suggest ? "25px" : "17px"}
+            >
                 <Box sx={boxStyle}>
                     <TvIcon sx={iconStyle} />
                     <Typography variant="p">کیفیت : {quality}</Typography>
                 </Box>
+                {suggest && (
+                    <Box sx={boxStyle}>
+                        <TimerOutlinedIcon sx={iconStyle} />
+                        <Typography variant="h6" fontSize={"13px"}>
+                            زمان : {duration} دقیقه
+                        </Typography>
+                    </Box>
+                )}
                 <Box sx={boxStyle}>
                     <FolderOpenIcon sx={iconStyle} />
                     <Typography variant="p">
@@ -180,29 +191,45 @@ const InfoOfDetails = ({ data }) => {
                 </Box>
             </Box>
 
-            <Box>
-                <Box sx={boxStyle}>
-                    <TimerOutlinedIcon sx={iconStyle} />
-                    <Typography variant="h6" fontSize={"13px"}>
-                        زمان : {duration} دقیقه
-                    </Typography>
+            {!suggest && (
+                <Box
+                    display="flex"
+                    flexDirection="column"
+                    gap={!suggest && "25px"}
+                >
+                    <Box sx={boxStyle}>
+                        <TimerOutlinedIcon sx={iconStyle} />
+                        <Typography variant="h6" fontSize={"13px"}>
+                            زمان : {duration} دقیقه
+                        </Typography>
+                    </Box>
+
+                    <Box sx={boxStyle}>
+                        <Filter9PlusOutlinedIcon sx={iconStyle} />
+                        <Typography variant="p">رده سنی : {ages}</Typography>
+                    </Box>
+
+                    <Box sx={boxStyle}>
+                        <LanguageOutlinedIcon sx={iconStyle} />
+                        <Typography variant="p">
+                            محصول کشور : {joinCountries(manyRerence)}
+                        </Typography>
+                    </Box>
                 </Box>
-                <Box sx={boxStyle}>
-                    <Filter9PlusOutlinedIcon sx={iconStyle} />
-                    <Typography variant="p">رده سنی : {ages}</Typography>
-                </Box>
-                <Box sx={boxStyle}>
-                    <LanguageOutlinedIcon sx={iconStyle} />
-                    <Typography variant="p">
-                        محصول کشور : {joinCountries(manyRerence)}
-                    </Typography>
-                </Box>
-            </Box>
-            <Box sx={{ gridColumn: "1/3" }}>
-                <Box sx={boxStyle}>
-                    <CreateOutlinedIcon sx={iconStyle} />
-                    <Typography variant="p">نویسنده : {authors}</Typography>
-                </Box>
+            )}
+
+            <Box
+                sx={{ gridColumn: "1/3" }}
+                display={"flex"}
+                flexDirection="column"
+                gap={!suggest ? "25px" : "10px"}
+            >
+                {!suggest && (
+                    <Box sx={boxStyle}>
+                        <CreateOutlinedIcon sx={iconStyle} />
+                        <Typography variant="p">نویسنده : {authors}</Typography>
+                    </Box>
+                )}
                 <Box sx={boxStyle}>
                     <a
                         href="https://www.freepik.com/icon/comedy_1719842?sign-up=google"
@@ -220,6 +247,14 @@ const InfoOfDetails = ({ data }) => {
                         ستارگان : {joinStars(manyRerence)}
                     </Typography>
                 </Box>
+                {suggest && (
+                    <Box sx={boxStyle}>
+                        <LanguageOutlinedIcon sx={iconStyle} />
+                        <Typography variant="p">
+                            محصول کشور : {joinCountries(manyRerence)}
+                        </Typography>
+                    </Box>
+                )}
             </Box>
         </Grid>
     );

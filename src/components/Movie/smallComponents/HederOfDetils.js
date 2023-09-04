@@ -15,7 +15,7 @@ import { RateStyle } from "../../Home/Gallery";
 import ImdbLogo from "../../Home/imdb.png";
 import { Link } from "react-router-dom";
 
-const HederOfDetils = ({ data }) => {
+const HederOfDetils = ({ data, suggest }) => {
     const {
         title,
         movieComments,
@@ -31,38 +31,49 @@ const HederOfDetils = ({ data }) => {
                 <Grid
                     item
                     xs={12}
-                    sm={9.5}
+                    sm={!suggest ? 9.5 : 8.3}
                     height={"100px"}
                     display={"flex"}
                     alignItems={"center"}
-                    pr={1.5}
+                    pr={!suggest && 1.5}
                 >
                     <Stack gap={"10px"}>
-                        <Typography variant="p" fontSize={"24px"}>
-                            دانلود فیلم {title}
-                        </Typography>
+                        <Link to={`/movies/${slug}`}>
+                            <Typography
+                                variant="p"
+                                fontSize={!suggest ? "24px" : "18.4px"}
+                            >
+                                دانلود فیلم {title}
+                            </Typography>
+                        </Link>
 
                         {/* comment counter */}
-                        <Box display={"flex"} alignItems={"center"} gap="5px">
-                            <ChatRoundedIcon sx={{ fontSize: "16px" }} />
-                            <Typography variant="p" fontSize={"14.4px"}>
-                                <h6
-                                    style={{
-                                        display: "inline-block",
-                                        color: "#EB8307",
-                                        fontSize: "14.4px",
-                                    }}
-                                >
-                                    {movieComments.length}
-                                </h6>{" "}
-                                Comments
-                            </Typography>
-                        </Box>
+                        {!suggest && (
+                            <Box
+                                display={"flex"}
+                                alignItems={"center"}
+                                gap="5px"
+                            >
+                                <ChatRoundedIcon sx={{ fontSize: "16px" }} />
+                                <Typography variant="p" fontSize={"14.4px"}>
+                                    <h6
+                                        style={{
+                                            display: "inline-block",
+                                            color: "#EB8307",
+                                            fontSize: "14.4px",
+                                        }}
+                                    >
+                                        {movieComments.length}
+                                    </h6>
+                                    Comments
+                                </Typography>
+                            </Box>
+                        )}
                     </Stack>
                 </Grid>
 
                 {/* rate and favorite */}
-                <Grid item xs={12} sm={2.5} height={"100px"}>
+                <Grid item xs={12} sm={!suggest ? 2.5 : 3.7} height={"100px"}>
                     <Box
                         height={"100%"}
                         display={"flex"}
