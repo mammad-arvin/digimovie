@@ -268,7 +268,12 @@ const HomeSuggestions = () => {
                                         sx={{
                                             position: "absolute",
                                             bottom: "0",
-                                            left: { xs: "39%", sm: "15px" },
+                                            // left: { xs: "34%", sm: "15px" },
+                                            left: { xs: "50%", sm: "15px" },
+                                            transform: {
+                                                xs: "translateX(-19.5%)",
+                                                sm: "none",
+                                            },
                                         }}
                                     >
                                         <Box position={"relative"}>
@@ -276,7 +281,7 @@ const HomeSuggestions = () => {
                                                 <Typography
                                                     variant="p"
                                                     position="absolute"
-                                                    left="20px"
+                                                    left="21px"
                                                     top="-20px"
                                                 >
                                                     ادامه /
@@ -285,6 +290,7 @@ const HomeSuggestions = () => {
                                                             color: "#EB8307",
                                                         }}
                                                     >
+                                                        {" "}
                                                         دانلود
                                                     </span>
                                                 </Typography>
