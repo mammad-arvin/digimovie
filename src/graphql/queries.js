@@ -299,6 +299,9 @@ const GET_MOVIES_DATA = gql`
             rate {
                 rate
             }
+            htmlOfRate {
+                text
+            }
         }
     }
 `;

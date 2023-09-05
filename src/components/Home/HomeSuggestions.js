@@ -1,12 +1,13 @@
 import React from "react";
 
 // Mui
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
 // components
 import HederOfDetils from "../Movie/smallComponents/HederOfDetils";
 import InfoOfDetails from "../Movie/smallComponents/InfoOfDetails";
+import ShowTrailer from "../Movie/smallComponents/ShowTrailer";
 
 // GraphQL
 import { useQuery } from "@apollo/client";
@@ -16,19 +17,41 @@ import { GET_MOVIES_DATA } from "../../graphql/queries";
 import { Link } from "react-router-dom";
 
 // helper function
-import { miniLittleDecription } from "../../helpers/helperFunctions";
+import {
+    miniLittleDecription,
+    miniMoviePoserTitle,
+} from "../../helpers/helperFunctions";
+
+//gallery pakage
+import Carousel from "nuka-carousel";
+
+// styled component for rate of movie
+import { RateStyle } from "./Gallery";
 
 // icons
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import LiveTvOutlinedIcon from "@mui/icons-material/LiveTvOutlined";
-import ShowTrailer from "../Movie/smallComponents/ShowTrailer";
+import KeyboardVoiceOutlinedIcon from "@mui/icons-material/KeyboardVoiceOutlined";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+// arow Style
+const arowStyle = {
+    fontSize: "27px",
+    color: "#FFF",
+    background: "rgba(0, 0, 0 ,.7)",
+    borderRadius: "50%",
+    p: "5px",
+    position: "relative",
+    top: "-3px",
+    cursor: "pointer",
+};
 
 //sx style
 const gridItemStyle = {
     direction: "rtl",
     display: "flex",
     justifyContent: "center",
-    borderRadius: "10px",
 };
 
 const HomeSuggestions = () => {
@@ -41,7 +64,7 @@ const HomeSuggestions = () => {
 
     return (
         data && (
-            <Grid container zIndex={1}>
+            <Grid container zIndex={1} mb={5}>
                 <Grid item xs={12} lg={11} m="15px auto">
                     <Grid
                         container
@@ -344,20 +367,182 @@ const HomeSuggestions = () => {
                         </Grid>
 
                         {/* for news of series or other .... */}
-                        <Grid
-                            item
-                            xs={12}
-                            md={3}
-                            height={"170px"}
-                            sx={{
-                                ...gridItemStyle,
-                                background:
-                                    mode === "dark" ? "#242424" : "#FFFFFF",
-                            }}
-                        >
-                            <Box>
-                                <Typography variant="p">
-                                    for news of series or other ....
+                        <Grid item xs={12} md={3} sx={{ direction: "rtl" }}>
+                            <Stack
+                                width="100%"
+                                // height={{lg:"495px"}}
+                                alignItems="center"
+                                pb={2}
+                                bgcolor={
+                                    mode === "dark" ? "#242424" : "#FFFFFF"
+                                }
+                                borderRadius="10px"
+                            >
+                                {/* title */}
+                                <Box
+                                    display="flex"
+                                    justifyContent="center"
+                                    alignItems="center"
+                                    gap={1}
+                                    mt={2}
+                                >
+                                    {/* icon */}
+                                    <Box
+                                        position="relative"
+                                        color={text.primary}
+                                        sx={{
+                                            "&::before": {
+                                                content: '"FA"',
+                                                width: "21px",
+                                                height: "19px",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                fontSize: "9px",
+                                                background:
+                                                    mode === "dark"
+                                                        ? "black"
+                                                        : "#CCCCCC",
+                                                borderRadius: "8px",
+                                                position: "absolute",
+                                                right: "-7px",
+                                                top: "15px",
+                                            },
+                                        }}
+                                    >
+                                        <KeyboardVoiceOutlinedIcon
+                                            fontSize="large"
+                                            sx={{ color: "#E07D07" }}
+                                        />
+                                    </Box>
+
+                                    {/* text */}
+                                    <Stack alignItems="center">
+                                        <Typography variant="p">
+                                            فیـــلم هــای
+                                        </Typography>
+                                        <Typography
+                                            variant="p"
+                                            fontSize="11px"
+                                            sx={{ opacity: ".8" }}
+                                        >
+                                            دوبله فارسی
+                                        </Typography>
+                                    </Stack>
+                                </Box>
+
+                                {/* Gallery of dubled movie */}
+                                <Box
+                                    // width={"84%"}
+                                    width={{ xs: "40%", md: "84%" }}
+                                    mt={2}
+                                    sx={{
+                                        direction: "ltr",
+                                    }}
+                                >
+                                    <Carousel
+                                        renderCenterLeftControls={({
+                                            previousSlide,
+                                        }) => (
+                                            <ArrowBackIosNewIcon
+                                                sx={{
+                                                    ...arowStyle,
+                                                    left: "-15px",
+                                                }}
+                                                onClick={previousSlide}
+                                            />
+                                        )}
+                                        renderCenterRightControls={({
+                                            nextSlide,
+                                        }) => (
+                                            <ArrowForwardIosIcon
+                                                sx={{
+                                                    ...arowStyle,
+                                                    top: "0",
+                                                    right: "-15px",
+                                                }}
+                                                onClick={nextSlide}
+                                            />
+                                        )}
+                                        autoplay="true"
+                                        autoplayInterval="3000"
+                                        cellSpacing={20}
+                                    >
+                                        {data.movies.map(
+                                            (item) =>
+                                                item.movieLinkFa.length > 0 && (
+                                                    <Link
+                                                        to={`/movies/${item.slug}`}
+                                                        key={item.slug}
+                                                    >
+                                                        {/* poster image */}
+                                                        <img
+                                                            src={
+                                                                item.images[1]
+                                                                    .url
+                                                            }
+                                                            width="100%"
+                                                            style={{
+                                                                borderRadius:
+                                                                    "6px",
+                                                            }}
+                                                        />
+
+                                                        {/* title */}
+                                                        <Box
+                                                            textAlign={"center"}
+                                                        >
+                                                            <Typography
+                                                                variant="p"
+                                                                fontSize={{
+                                                                    xs: "11px",
+                                                                    sm: "16px",
+                                                                }}
+                                                                sx={{
+                                                                    direction:
+                                                                        "ltr",
+                                                                }}
+                                                            >
+                                                                {miniMoviePoserTitle(
+                                                                    item.title
+                                                                )}
+                                                            </Typography>
+                                                        </Box>
+
+                                                        {/* rate style */}
+                                                        <RateStyle
+                                                            sx={{
+                                                                "span:first-of-type":
+                                                                    {
+                                                                        color: "#66CC33",
+                                                                    },
+                                                            }}
+                                                            dangerouslySetInnerHTML={{
+                                                                __html: item
+                                                                    .htmlOfRate
+                                                                    .text,
+                                                            }}
+                                                        />
+                                                    </Link>
+                                                )
+                                        )}
+                                    </Carousel>
+                                </Box>
+                            </Stack>
+
+                            {/* Other */}
+                            <Box
+                                mt={2}
+                                p={3}
+                                borderRadius={"10px"}
+                                bgcolor={
+                                    mode === "dark" ? "#242424" : "#FFFFFF"
+                                }
+                            >
+                                <Typography>
+                                    اخبار سریال ها و دیگر پیشنهادات در این قسمت
+                                    جای میگیرند , که به دلیل کامل نبودن اصلاعات
+                                    سرور , توسعه داده نشده است .
                                 </Typography>
                             </Box>
                         </Grid>
