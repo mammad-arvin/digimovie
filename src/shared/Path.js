@@ -41,7 +41,7 @@ const Path = ({ category, title, slug }) => {
                 <Typography variant="p">
                     <Link to={category.l}>{category.t}</Link>
                 </Typography>
-                <ArrowBackIosIcon fontSize="small" />
+                {title && <ArrowBackIosIcon fontSize="small" />}
                 <Typography variant="p">
                     <Link to={category.l + "/" + slug}>{title}</Link>
                 </Typography>
