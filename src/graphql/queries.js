@@ -306,6 +306,19 @@ const GET_MOVIES_DATA = gql`
     }
 `;
 
+// Get favorite movies data
+const GET_FAVORITE_MOVIE_DATA = gql`
+    query MyQuery($favedMovie: [String]) {
+        movies(where: { slug_in: $favedMovie }) {
+            title
+            slug
+            images {
+                url
+            }
+        }
+    }
+`;
+
 export {
     GET_FILMS_DETAILS_FOR_SEARCH,
     GET_FOOTER_NEWS_GALLERY,
@@ -319,4 +332,5 @@ export {
     GET_RELATED_VIDEO,
     GET_MOVIE_POSTER_DATA,
     GET_MOVIES_DATA,
+    GET_FAVORITE_MOVIE_DATA,
 };
