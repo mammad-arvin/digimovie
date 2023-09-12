@@ -12,6 +12,7 @@ import Home from "./components/Home/Home";
 import Movies from "./components/Movies/Movies";
 import Movie from "./components/Movie/Movie";
 import FavoriteMovies from "./components/Favorite movie/FavoriteMovies";
+import NotFound from "./components/NotFound";
 
 function App() {
     // page will be scroll to top when pathname change
@@ -38,6 +39,7 @@ function App() {
                 <Route path="/movies" element={<Movies />} />
                 <Route path="/movies/:LocalSlug" element={<Movie />} />
                 <Route path="/favorite" element={<FavoriteMovies />} />
+                <Route path="/*" element={<NotFound />} />
             </Routes>
         </Layout>
     );
