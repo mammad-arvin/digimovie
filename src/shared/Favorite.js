@@ -67,8 +67,19 @@ const Favorite = ({ slug, gallery }) => {
                     ...JSON.parse(localStorage.getItem("favoriteMovies")),
                 ];
             }
-            favoriteMovies.push(slug);
-            submitToLocal_Graph();
+
+            // if item was added in a that page and data is not update by reRender component so we handle that to sure don't add that item as additional item
+            let wasAdded = false;
+
+            favoriteMovies.map((item) => {
+                if (item === slug) wasAdded = true;
+            });
+
+            if (!wasAdded) {
+                favoriteMovies.push(slug);
+                submitToLocal_Graph();
+            }
+
             gallery && alert("به لیست علاقه مندی اضافه شد!");
             !gallery && setAlert_succ(true);
         } else {
