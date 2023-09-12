@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // roter dom
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // components
 import Layout from "./Layout/index";
@@ -14,6 +14,20 @@ import Movie from "./components/Movie/Movie";
 import FavoriteMovies from "./components/Favorite movie/FavoriteMovies";
 
 function App() {
+    // page will be scroll to top when pathname change
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        document.documentElement.scrollTo(
+            {
+                top: 0,
+                left: 0,
+                behavior: "smooth",
+            },
+            [pathname]
+        );
+    });
+
     return (
         <Layout>
             <Routes>
