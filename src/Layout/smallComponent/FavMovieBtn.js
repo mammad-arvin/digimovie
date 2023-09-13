@@ -59,7 +59,7 @@ const FavMovieBtn = () => {
                     <Box className="innerCicle">
                         <Box className="favIcon">
                             <Badge
-                                badgeContent={favedMovie.length}
+                                badgeContent={favedMovie ? favedMovie.length : 0}
                                 color="favMovie"
                                 showZero
                                 sx={{
