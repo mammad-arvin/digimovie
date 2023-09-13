@@ -76,6 +76,8 @@ const GET_DATA_OF_USER_FOR_LOGE_IN_WITH_USERNAME = gql`
             likedContent
             favoriteMovies
             ratedContent
+            likedCommets
+            dislikedComments
         }
     }
 `;
@@ -88,6 +90,8 @@ const GET_DATA_OF_USER_FOR_LOGE_IN_WITH_EMAIL = gql`
             likedContent
             favoriteMovies
             ratedContent
+            likedCommets
+            dislikedComments
         }
     }
 `;

@@ -76,6 +76,14 @@ const SignIn = ({ modal }) => {
                         "ratedContent",
                         JSON.stringify(data.registeredUser.ratedContent)
                     );
+                    localStorage.setItem(
+                        "likedCommets",
+                        JSON.stringify(data.registeredUser.likedCommets)
+                    );
+                    localStorage.setItem(
+                        "dislikedComments",
+                        JSON.stringify(data.registeredUser.dislikedComments)
+                    );
                     setAlert_succ(true);
                     setTimeout(() => window.location.reload(), 2200);
                 } else {
