@@ -113,6 +113,14 @@ const SignUp = ({ modal }) => {
                 "ratedContent",
                 JSON.stringify(data.publishRegisteredUser.ratedContent)
             );
+            localStorage.setItem(
+                "likedCommets",
+                JSON.stringify(data.publishRegisteredUser.likedCommets)
+            );
+            localStorage.setItem(
+                "dislikedComments",
+                JSON.stringify(data.publishRegisteredUser.dislikedComments)
+            );
             setAlert_succ(true);
             setTimeout(() => window.location.reload(), 2800);
         } else if (error) {

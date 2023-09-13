@@ -62,6 +62,8 @@ const CREATE_USER = gql`
             likedContent
             favoriteMovies
             ratedContent
+            likedCommets
+            dislikedComments
         }
     }
 `;
