@@ -53,6 +53,8 @@ const CREATE_USER = gql`
                 email: $email
                 phone: $phone
                 psassword: $passWord
+                dislikedComments: []
+                likedCommets: []
             }
         ) {
             id
