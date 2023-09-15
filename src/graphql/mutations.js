@@ -171,6 +171,43 @@ const UPDATE_RATE_OF_MOVIE = gql`
     }
 `;
 
+// update comment(uplike , dislikes) and user (liked and disliked comment) after any like or dislike comment
+const UPDATE_COMMENT_AND_USER_AFTER_LIKE_DISLIKE = gql`
+    mutation MyMutation(
+        $id: ID!
+        $uplikes: Int!
+        $dislikes: Int!
+        $userName: String!
+        $likedCommets: Json!
+        $dislikedComments: Json!
+    ) {
+        updateComment(
+            data: {
+                upLikes: $uplikes
+                disLikes: $dislikes
+                registeredUsercomment: {
+                    update: {
+                        where: { userName: $userName }
+                        data: {
+                            dislikedComments: $dislikedComments
+                            likedCommets: $likedCommets
+                        }
+                    }
+                }
+            }
+            where: { id: $id }
+        ) {
+            id
+        }
+        publishComment(where: { id: $id }) {
+            id
+        }
+        publishRegisteredUser(where: { userName: $userName }) {
+            id
+        }
+    }
+`;
+
 export {
     SEND_PAGE_VIEWS,
     iNCREASE_AND_DECREASE_LIKS,
@@ -181,4 +218,5 @@ export {
     SEND_USER_FAVORITE_MOVIES,
     UPDATE_RATEDCONTENT_OF_USER,
     UPDATE_RATE_OF_MOVIE,
+    UPDATE_COMMENT_AND_USER_AFTER_LIKE_DISLIKE,
 };
