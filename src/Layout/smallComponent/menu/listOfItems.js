@@ -6,37 +6,37 @@ const movieItem = [
         },
         {
             title: "۲۵۰ فیلم برتر تاریخ",
-            slug: "/movies/best-250",
+            slug: "/mov/best-250",
         },
         {
             title: "جدول باکس آفیس",
-            slug: "/movies/box-office",
+            slug: "/mov/box-office",
         },
         {
             title: "فیلم های بزودی",
-            slug: "/movies/commingSoon",
+            slug: "/mov/commingSoon",
         },
         {
             title: "فیلم های ۳ بعدی",
-            slug: "/movies/3d",
+            slug: "/mov/3d",
         },
     ],
     [
         {
             title: "فیلم های دارای پخش آنلاین",
-            slug: "/movies/online-play",
+            slug: "/mov/online-play",
         },
         {
             title: "دانلود انیمیشن",
-            slug: "/movies/animation",
+            slug: "/mov/animation",
         },
         {
             title: "فیلم های دوبله فارسی",
-            slug: "/movies/dubled",
+            slug: "/mov/dubled",
         },
         {
             title: "سینمای هند",
-            slug: "/movies/india",
+            slug: "/mov/india",
         },
     ],
 ];
