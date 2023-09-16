@@ -221,10 +221,11 @@ const Footer = () => {
 
                     {/* descroption */}
                     <Typography
-                        variant="subtitle2"
+                        variant="p"
+                        fontSize="11px"
                         sx={{
                             mt: "30px",
-                            mb: "15px",
+                            mb: "19px",
                             color: mode === "dark" ? "#fff" : "#000",
                         }}
                     >
