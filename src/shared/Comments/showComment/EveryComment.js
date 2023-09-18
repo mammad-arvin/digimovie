@@ -57,11 +57,13 @@ const EveryComment = ({ item }) => {
     const [up_war, setUp_war] = useState(false);
     const [dis_succ, setDis_succ] = useState(false);
     const [dis_war, setDis_war] = useState(false);
+    const [userError, setUserError] = useState(false);
 
     // like and dislike handler
     // initial value of data
     const [uplikes, setUplikes] = useState(Number(item.upLikes));
     const [dislikes, setDislikes] = useState(Number(item.disLikes));
+    const userId = localStorage.getItem("userId");
     const dislikedComments = JSON.parse(
         localStorage.getItem("dislikedComments")
     );
@@ -70,9 +72,11 @@ const EveryComment = ({ item }) => {
     // was liked or disliked?
     const [wasLiked, setWasLiked] = useState(false);
     !wasLiked &&
+        userId &&
         likedCommets.map((itm) => itm === item.id && setWasLiked(true));
     const [wasDisliked, setWasDisliked] = useState(false);
     !wasDisliked &&
+        userId &&
         dislikedComments.map((itm) => itm === item.id && setWasDisliked(true));
 
     // like handler
@@ -215,7 +219,11 @@ const EveryComment = ({ item }) => {
                             {/* dislikes */}
                             <StackStyled
                                 mode={mode}
-                                onClick={() => dislikeHandler()}
+                                onClick={() =>
+                                    userId
+                                        ? dislikeHandler()
+                                        : setUserError(true)
+                                }
                             >
                                 <ThumbDownOffAltOutlinedIcon
                                     sx={{ color: "#E91E63" }}
@@ -228,7 +236,9 @@ const EveryComment = ({ item }) => {
                             {/* uplikes */}
                             <StackStyled
                                 mode={mode}
-                                onClick={() => likeHandler()}
+                                onClick={() =>
+                                    userId ? likeHandler() : setUserError(true)
+                                }
                             >
                                 <ThumbUpOutlinedIcon
                                     sx={{ color: "#8BC34A" }}
@@ -418,6 +428,17 @@ const EveryComment = ({ item }) => {
                 onClose={() => setDis_war(false)}
             >
                 <Alert severity="warning">قبلا لایک منفی کرده اید</Alert>
+            </Snackbar>
+
+            {/* user error alert */}
+            <Snackbar
+                open={userError}
+                autoHideDuration={1500}
+                onClose={() => setUserError(false)}
+            >
+                <Alert severity="error">
+                    ابتدا باید وارد حساب کاربریتان شوید
+                </Alert>
             </Snackbar>
         </Box>
     );
