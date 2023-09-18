@@ -1,19 +1,8 @@
-<h1 align="center">Hi 👋, I'm Mohammad Hadi Arvin</h1>
-<h3 align="center">A passionate frontend developer from Iran</h3>
+<h1 align="center">Hi 👋, This project is redeveloped digimovie website </h1>
+
+-   Project's netlify link [digimovie](https://digimovie.netlify.app/)
 
 -   Project's VERCEL link [digimovie](https://digimovie.vercel.app/)
-
--   🌱 I’m currently learning **Next.js**
-
--   👨‍💻 All of my projects are available at [https://github.com/mammad-arvin](https://github.com/mammad-arvin)
-
--   💬 Ask me about **React , Redux , GraphQL , MUI**
-
--   📫 How to reach me **mammad.arvin@gmail.com**
-
--   📄 Know about my experiences [https://github.com/mammad-arvin](https://github.com/mammad-arvin)
-
--   ⚡ Fun fact **I Love game play & Parkour and kickboxing**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
