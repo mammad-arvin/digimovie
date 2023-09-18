@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, This project is redeveloped digimovie website </h1>
+<h1 align="center">Hi 👋, this is a redeveloped project of the digimovie website </h1>
 
 -   Project's netlify link [digimovie](https://digimovie.netlify.app/)
 
