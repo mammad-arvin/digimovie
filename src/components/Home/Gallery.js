@@ -5,6 +5,7 @@ import Carousel from "nuka-carousel";
 
 // MUI
 import { Box, Typography, Grid } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // router-dom
 import { Link } from "react-router-dom";
@@ -244,6 +245,16 @@ const Gallery = () => {
                                         )
                                 )}
                         </Carousel>
+                    )}
+                    {loading && (
+                        <Box
+                            height="500px"
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                        >
+                            <CircularProgress color="favMovie" size="6rem" />
+                        </Box>
                     )}
                 </Grid>
             </Grid>
