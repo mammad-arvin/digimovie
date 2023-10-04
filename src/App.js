@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 // components
-import { Layout, Report, SignIn, SignUp, Home, Movies, Movie, FavoriteMovies, NotFound} from './_components';
+import { Layout, Report, SignIn, SignUp, Home, Movies, Movie, FavoriteMovies, NotFound} from './_components.js';
 
 function App() {
     // page will be scroll to top when pathname change
