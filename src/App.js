@@ -13,6 +13,7 @@ import Movies from "./components/Movies/Movies";
 import Movie from "./components/Movie/Movie";
 import FavoriteMovies from "./components/Favorite movie/FavoriteMovies";
 import NotFound from "./components/NotFound";
+import { Layout, Report, SignIn, SignUp, Home, Movies, Movie, FavoriteMovies, NotFound} from './_components';
 
 function App() {
     // page will be scroll to top when pathname change
