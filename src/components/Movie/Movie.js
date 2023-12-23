@@ -29,9 +29,7 @@ const Movie = () => {
         },
     });
 
-    if (data) {
-        var { title, slug } = data.movie;
-    }
+    if (data) var { title, slug } = data.movie;
 
     // title changer
     titleChanger(`دانلود فیلم ${title}`);
