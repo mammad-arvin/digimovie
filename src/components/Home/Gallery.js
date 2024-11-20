@@ -95,6 +95,7 @@ const Gallery = () => {
                 >
                     {data && (
                         <Carousel
+                            transitionMode="scroll3d"
                             renderCenterLeftControls={({ previousSlide }) => (
                                 <ArrowBackIosNewIcon
                                     sx={arowStyle}
